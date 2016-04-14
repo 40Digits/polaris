@@ -1,0 +1,85 @@
+// ================================
+// Fonts
+// ================================
+
+// --------------------------------
+// @font-face & @import
+// --------------------------------
+
+// @font-face {
+// 	font-family: 'ClarendonBT-Roman';
+// 	src:url('assets/fonts/font-folder-name/font-file.eot');
+// 	src:url('assets/fonts/font-folder-name/font-file.eot?#iefix') format('embedded-opentype'),
+// 		url('assets/fonts/font-folder-name/font-file.woff') format('woff'),
+// 		url('assets/fonts/font-folder-name/font-file.ttf') format('truetype');
+// 	font-weight: 400;
+// }
+
+
+// --------------------------------
+// Font Variables
+// --------------------------------
+
+// Variables best utilized for font services without family grouping.
+$font-regular: 'Regular Font Family Name', sans-serif;
+$font-light: 'Light Font Family Name', sans-serif;
+$font-bold: 'Bold Font Family Name', sans-serif;
+
+// Variables best utilized for font services with family grouping.
+$font-name-one: 'Font Name One', sans-serif;
+$font-font-two: 'Font Name Two', sans-serif;
+
+
+// --------------------------------
+// Font Function
+// --------------------------------
+
+// Font List Map
+$fonts: (
+	fontone: (
+		regular: $font-regular,
+		light: $font-light,
+		bold: $font-bold
+	),
+	fonttwo: (
+		regular: $font-regular,
+		light: $font-light,
+		bold: $font-bold
+	)
+);
+
+// ex: font-family: setfont(fontone, light)
+// 1st value is your "Font List Map" font label
+// 2nd value is the style from "Font List Map" array
+
+@function setfont($name, $weight: regular) {
+	@if map-has-key($fonts, $name) {
+		@return map-get(map-get($fonts, $name), $weight);
+	} @else {
+		@warn "Couldn't find a font named `#{$name}`.";
+	}
+}
+
+
+// --------------------------------
+// Font Mixin
+// --------------------------------
+
+// ex: @include setfont(font-one, 400)
+// First value is your $family and second value is your weight
+
+@mixin setfont($family: sans-serif, $weight: normal) {
+	// Default Font Stack
+	@if $family == "default" {
+		font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	}
+	// Font One
+	@if $family == "font-one" {
+		font-family: $font-name-one;
+	}
+	// Font Two
+	@if $family == "font-two" {
+		font-family: $font-name-two;
+	}
+	font-weight: $weight;
+}

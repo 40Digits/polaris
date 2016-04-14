@@ -1,0 +1,58 @@
+// ================================
+// Javascript Breakpoints
+// ================================
+
+// Do no edit unless you know what you are doing.
+
+$public_breakpoints: (
+  'mq-tiny':      'max-tiny',
+  'mq-mini':      'mini',
+  'mq-small':     'small',
+  'mq-medium':    'medium',
+  'mq-large':     'large',
+  'mq-xlarge':    'xlarge',
+  'mq-xxlarge':   'xxlarge',
+  'mq-xxxlarge':  'xxxlarge'
+);
+
+// --------------------------------
+// Setup mixins
+// --------------------------------
+
+// Tells SassQwatch the names of our breakpoints
+@mixin expose-breakpoint-names($breakpoints) {
+  @each $public, $mq in $breakpoints {
+    @include mq($mq) {
+      font-family: $public;
+    }
+  }
+}
+
+// Tells SassQwatch the order of our breakpoints
+@mixin expose-breakpoint-order($breakpoints) {
+  $length: length($breakpoints);
+  $list: '';
+  $i: 1;
+
+  @each $breakpoint, $query in $breakpoints {
+    $list: $list + $breakpoint;
+
+    @if $i != $length {
+      $list: $list + ', ';
+    }
+
+    $i: $i + 1;
+  }
+  font-family: $list;
+}
+
+// --------------------------------
+// Expose the breakpoints
+// --------------------------------
+head {
+  @include expose-breakpoint-names($public_breakpoints);
+}
+
+title {
+  @include expose-breakpoint-order($public_breakpoints);
+}

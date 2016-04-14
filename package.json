@@ -1,0 +1,40 @@
+{
+  "name": "polaris",
+  "version": "1.0.0",
+  "description": "A Sass starter kit.",
+  "main": "_build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node _build.js"
+  },
+  "author": "40Digits",
+  "contributors": [
+    {
+      "name": "Besim Huskic",
+      "email": "besim@40digits.com"
+    },
+    {
+      "name": "Brandon Cash",
+      "email": "brandon@40digits.com"
+    },
+    {
+      "name": "Chad Watson",
+      "email": "chad@40digits.com"
+    },
+    {
+      "name": "CK Hicks",
+      "email": "ck@40digits.com"
+    },
+    {
+      "name": "Preston Richey",
+      "email": "preston@40digits.com"
+    }
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "glob": "^7.0.3",
+    "node-sass": "^3.4.2",
+    "postcss": "^5.0.19"
+  }
+}
