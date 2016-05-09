@@ -18,7 +18,13 @@
 			$em-values: append($em-values, $value);
 		}
 	}
-	@return $em-values;
+
+	@if length($em-values) == 1 {
+		// Unwrap first and only value before returning
+		@return nth($em-values, 1); // 1-based
+	} @else {
+		@return $em-values;
+	}
 }
 
 @function rem($px-values, $font-size: $base-font-size) {
@@ -37,5 +43,11 @@
 			$rem-values: append($rem-values, $value);
 		}
 	}
-	@return $rem-values;
+
+	@if length($rem-values) == 1 {
+		// Unwrap first and only value before returning
+		@return nth($rem-values, 1); // 1-based
+	} @else {
+		@return $rem-values;
+	}
 }
