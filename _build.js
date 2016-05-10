@@ -7,6 +7,7 @@ const postcss = require('postcss');
 const glob = require('glob');
 const autoprefixer = require('autoprefixer');
 const config = require('./_config.js');
+const clc = require('cli-color');
 
 /**
  * Returns the resolved output file path for the compiled stylesheets
@@ -28,17 +29,55 @@ function getDestPath(file) {
   return path.resolve(destDir, `${filename}.css`);
 }
 
+/**
+ * Get a prettified error message
+ * @param  {[type]} error [description]
+ * @return {[type]}       [description]
+ */
+function getError(error) {
+  const _error = (typeof error === 'string') ? { message: error } : error;
+
+  const errorMsg = clc.white.bgRedBright;
+  const cyan = clc.cyanBright;
+  const red = clc.red;
+  let renderedMessage = ` ${errorMsg(' ERROR ')}`;
+
+  renderedMessage += ` ${red(_error.message)}\n`;
+
+  if (_error.file) {
+    renderedMessage += `  in ${cyan(_error.file)}`;
+  }
+
+  if (_error.line) {
+    renderedMessage += `:${cyan(_error.line)}`;
+  }
+
+  if (_error.column) {
+    renderedMessage += `:${cyan(_error.column)}`;
+  }
+
+  if (_error.srcFile) {
+    renderedMessage += `\n  from ${cyan(_error.srcFile)}`;
+  }
+
+  renderedMessage += '\n';
+
+  return renderedMessage;
+}
+
 // Looks for each SCSS or Sass file
 glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
   if (err) {
-    console.log(err);
+    console.log(getError(err));
     return;
   }
 
   files.forEach(file => {
     sass.render(Object.assign({}, config.sass, { file }), (renderErr, result) => {
       if (renderErr) {
-        console.log(renderErr);
+        const error = renderErr;
+        error.srcFile = file;
+        console.log(getError(renderErr));
         return;
       }
 
@@ -50,14 +89,16 @@ glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
 
           fs.writeFile(dest, processedResult.css, writeErr => {
             if (writeErr) {
-              console.log(writeErr);
+              console.log(getError(writeErr));
               return;
             }
 
             const srcRelative = path.relative(process.cwd(), file);
             const destRelative = path.relative(process.cwd(), dest);
+            const success = clc.white.bgGreenBright;
+            const cyan = clc.cyanBright;
 
-            console.log(`Sass compiled! ${srcRelative} => ${destRelative}`);
+            console.log(` ${success(' SUCCESS ')} Compiled ${cyan(srcRelative)} => ${cyan(destRelative)}`);
             return;
           });
         });
