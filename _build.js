@@ -8,38 +8,6 @@ const glob = require('glob');
 const autoprefixer = require('autoprefixer');
 const config = require('./_config.js');
 
-glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
-  if (err) {
-    return console.log(err);
-  }
-
-  files.forEach(file => {
-    sass.render(Object.assign({}, config.sass, { file }), (err, result) => {
-      if (err) {
-        return console.log(err);
-      }
-
-      postcss()
-        .use(autoprefixer(config.autoprefixer))
-        .process(result.css)
-        .then(result => {
-          const dest = getDestPath(file);
-
-          fs.writeFile(dest, result.css, err => {
-            if (err) {
-              return console.log(err);
-            }
-
-            const srcRelative = path.relative(process.cwd(), file);
-            const destRelative = path.relative(process.cwd(), dest);
-
-            console.log(`Sass compiled! ${srcRelative} => ${destRelative}`);
-          })
-        });
-    });
-  });
-});
-
 /**
  * Returns the resolved output file path for the compiled stylesheets
  * @return {String} The destination dir
@@ -59,3 +27,44 @@ function getDestPath(file) {
 
   return path.resolve(destDir, `${filename}.css`);
 }
+
+// Looks for each SCSS or Sass file
+glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  files.forEach(file => {
+    sass.render(Object.assign({}, config.sass, { file }), (renderErr, result) => {
+      if (renderErr) {
+        console.log(renderErr);
+        return;
+      }
+
+      postcss()
+        .use(autoprefixer(config.autoprefixer))
+        .process(result.css)
+        .then(processedResult => {
+          const dest = getDestPath(file);
+
+          fs.writeFile(dest, processedResult.css, writeErr => {
+            if (writeErr) {
+              console.log(writeErr);
+              return;
+            }
+
+            const srcRelative = path.relative(process.cwd(), file);
+            const destRelative = path.relative(process.cwd(), dest);
+
+            console.log(`Sass compiled! ${srcRelative} => ${destRelative}`);
+            return;
+          });
+        });
+
+      return;
+    });
+  });
+
+  return;
+});

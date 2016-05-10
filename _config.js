@@ -4,11 +4,11 @@ exports.sass = {
   includePath: __dirname,
   outputStyle: 'compressed',
   sourceMap: true,
-  sourceMapEmbed: true
+  sourceMapEmbed: true,
 };
 
 // Autoprefixer options
 // https://github.com/postcss/autoprefixer#options
 exports.autoprefixer = {
-  browsers: '> 5%'
+  browsers: '> 5%',
 };
