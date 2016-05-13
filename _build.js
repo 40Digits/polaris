@@ -8,6 +8,7 @@ const glob = require('glob');
 const autoprefixer = require('autoprefixer');
 const config = require('./_config.js');
 const colors = require('colors');
+const notifier = require('node-notifier');
 
 colors.setTheme(config.colorTheme);
 
@@ -77,6 +78,10 @@ glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
         const error = renderErr;
         error.srcFile = file;
         console.log(getError(renderErr));
+        notifier.notify({
+          title: 'Sass Compile Error',
+          message: renderErr.message,
+        });
         return;
       }
 
