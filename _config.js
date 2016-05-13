@@ -12,3 +12,13 @@ exports.sass = {
 exports.autoprefixer = {
   browsers: '> 5%',
 };
+
+// Color options
+exports.colorTheme = {
+  error: 'white',
+  errorBg: 'bgRed',
+  success: 'white',
+  successBg: 'bgGreen',
+  filename: 'cyan',
+  errorMessage: 'red',
+};

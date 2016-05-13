@@ -7,7 +7,9 @@ const postcss = require('postcss');
 const glob = require('glob');
 const autoprefixer = require('autoprefixer');
 const config = require('./_config.js');
-const clc = require('cli-color');
+const colors = require('colors');
+
+colors.setTheme(config.colorTheme);
 
 /**
  * Returns the resolved output file path for the compiled stylesheets
@@ -37,27 +39,24 @@ function getDestPath(file) {
 function getError(error) {
   const _error = (typeof error === 'string') ? { message: error } : error;
 
-  const errorMsg = clc.white.bgRedBright;
-  const cyan = clc.cyanBright;
-  const red = clc.red;
-  let renderedMessage = ` ${errorMsg(' ERROR ')}`;
+  let renderedMessage = ' ERROR '.error.errorBg;
 
-  renderedMessage += ` ${red(_error.message)}\n`;
+  renderedMessage += ` ${colors.errorMessage(_error.message)}\n`;
 
   if (_error.file) {
-    renderedMessage += `  in ${cyan(_error.file)}`;
+    renderedMessage += `  in ${colors.filename(_error.file)}`;
   }
 
   if (_error.line) {
-    renderedMessage += `:${cyan(_error.line)}`;
+    renderedMessage += `:${colors.filename(_error.line)}`;
   }
 
   if (_error.column) {
-    renderedMessage += `:${cyan(_error.column)}`;
+    renderedMessage += `:${colors.filename(_error.column)}`;
   }
 
   if (_error.srcFile) {
-    renderedMessage += `\n  from ${cyan(_error.srcFile)}`;
+    renderedMessage += `\n  from ${colors.filename(_error.srcFile)}`;
   }
 
   renderedMessage += '\n';
@@ -95,10 +94,10 @@ glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
 
             const srcRelative = path.relative(process.cwd(), file);
             const destRelative = path.relative(process.cwd(), dest);
-            const success = clc.white.bgGreenBright;
-            const cyan = clc.cyanBright;
+            const successMessage = ' SUCCESS '.success.successBg;
 
-            console.log(` ${success(' SUCCESS ')} Compiled ${cyan(srcRelative)} => ${cyan(destRelative)}`);
+            console.log(`${successMessage}`
+              + ` Compiled ${colors.filename(srcRelative)} => ${colors.filename(destRelative)}`);
             return;
           });
         });
