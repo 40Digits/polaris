@@ -22,3 +22,6 @@ exports.colorTheme = {
   filename: 'cyan',
   errorMessage: 'red',
 };
+
+// Receive Sass render errors in Notification Center
+exports.errorNotifications = true;

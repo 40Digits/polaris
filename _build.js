@@ -78,10 +78,14 @@ glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
         const error = renderErr;
         error.srcFile = file;
         console.log(getError(renderErr));
-        notifier.notify({
-          title: 'Sass Compile Error',
-          message: renderErr.message,
-        });
+
+        if (config.errorNotifications) {
+          notifier.notify({
+            title: 'Sass Compile Error',
+            message: renderErr.message,
+          });
+        }
+
         return;
       }
 
