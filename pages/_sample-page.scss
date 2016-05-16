@@ -38,7 +38,7 @@
   max-width: 600px;
   margin: rem(0 10px 40px);
   padding: rem(0 40px 40px);
-  border: 1px solid rgba(setcolor(black), .2);
+  border: 1px solid rgba(getcolor(black), .2);
   border-radius: rem(5px);
   overflow: hidden;
   @include mq(small) {
@@ -51,7 +51,7 @@
     width: calc(100% + 80px);
     left: rem(-40px);
     padding: rem(10px 40px);
-    background: setcolor(black);
+    background: getcolor(black);
     color: #fff;
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
@@ -118,7 +118,6 @@
   code {
     display: block;
   }
-
   h2 {
     @extend %hsize-large;
     text-align: center;
@@ -135,14 +134,14 @@
   }
   .row {
     @include container(1200px);
-    background: rgba(setcolor(black), .1);
+    background: rgba(getcolor(black), .1);
     padding: rem(0 20px);
     margin-bottom: rem(50px);
   }
   div,
   aside,
   article {
-    background: rgba(setcolor(black), .4);
+    background: rgba(getcolor(black), .4);
     padding: rem(20px);
     margin-bottom: rem(20px);
     color: #fff;
