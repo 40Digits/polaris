@@ -1,0 +1,34 @@
+/**
+ * Returns a color with an optional tone from the map
+ *
+ * @param {string}  $color_name     The base name of the color
+ * @param {tone}    ($tone|'base')  The tone of that color or 'base'
+ *
+ * @return {string} The matching color's value from the map
+ */
+
+@function getcolor($color-name, $tone: base) {
+  @if map-has-key($colors, $color-name) {
+    $map-color-name: map-get($colors, $color_name);
+    @if (length($map-color-name) > 1) {
+      // This must be a map
+      @return map-get($map-color-name, $tone);
+    } @else {
+      // It's just a single color
+      @return $map-color-name;
+    }
+  } @else {
+    @warn "Couldn't find a color named `#{$color-name}`.";
+  }
+}
+
+
+/**
+ * Alias for getcolor to allow transitions for older codebases
+ * @deprecated
+ */
+@function setcolor($color_name, $tone: base) {
+  @warn '`setcolor` is deprecated and will be removed in a future release! Use `getcolor` instead.';
+
+  @return getcolor($color-name, $tone);
+}
