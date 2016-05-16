@@ -28,7 +28,7 @@
  * @deprecated
  */
 @function setcolor($color_name, $tone: base) {
-  @warn '`setcolor` is deprecated and will be removed in a future release!';
+  @warn '`setcolor` is deprecated and will be removed in a future release! Use `getcolor` instead.';
 
   @return getcolor($color-name, $tone);
 }
