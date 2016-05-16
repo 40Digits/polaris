@@ -33,7 +33,7 @@ a {
 	text-decoration: none;
 	&:hover,
 	&:focus {
-		color: setcolor(gray);
+		color: getcolor(gray);
 	}
 	&:focus {
 		outline: none;
