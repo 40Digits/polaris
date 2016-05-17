@@ -1,5 +1,3 @@
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const sass = require('node-sass');
@@ -38,26 +36,25 @@ function getDestPath(file) {
  * @return {[type]}       [description]
  */
 function getError(error) {
-  const _error = (typeof error === 'string') ? { message: error } : error;
-
+  const errorObj = (typeof error === 'string') ? { message: error } : error;
   let renderedMessage = ' ERROR '.error.errorBg;
 
-  renderedMessage += ` ${colors.errorMessage(_error.message)}\n`;
+  renderedMessage += ` ${colors.errorMessage(errorObj.message)}\n`;
 
-  if (_error.file) {
-    renderedMessage += `  in ${colors.filename(_error.file)}`;
+  if (errorObj.file) {
+    renderedMessage += `  in ${colors.filename(errorObj.file)}`;
   }
 
-  if (_error.line) {
-    renderedMessage += `:${colors.filename(_error.line)}`;
+  if (errorObj.line) {
+    renderedMessage += `:${colors.filename(errorObj.line)}`;
   }
 
-  if (_error.column) {
-    renderedMessage += `:${colors.filename(_error.column)}`;
+  if (errorObj.column) {
+    renderedMessage += `:${colors.filename(errorObj.column)}`;
   }
 
-  if (_error.srcFile) {
-    renderedMessage += `\n  from ${colors.filename(_error.srcFile)}`;
+  if (errorObj.srcFile) {
+    renderedMessage += `\n  from ${colors.filename(errorObj.srcFile)}`;
   }
 
   renderedMessage += '\n';
