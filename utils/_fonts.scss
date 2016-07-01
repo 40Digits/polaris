@@ -1,4 +1,4 @@
-// ================================
+S// ================================
 // Fonts
 // ================================
 
@@ -28,38 +28,6 @@ $font-bold: 'Bold Font Family Name', sans-serif;
 // Variables best utilized for font services with family grouping.
 $font-name-one: 'Font Name One', sans-serif;
 $font-font-two: 'Font Name Two', sans-serif;
-
-
-// --------------------------------
-// Font Function
-// --------------------------------
-
-// Font List Map
-$fonts: (
-  fontone: (
-    regular: $font-regular,
-    light: $font-light,
-    bold: $font-bold
-  ),
-  fonttwo: (
-    regular: $font-regular,
-    light: $font-light,
-    bold: $font-bold
-  )
-);
-
-// ex: font-family: setfont(fontone, light)
-// 1st value is your "Font List Map" font label
-// 2nd value is the style from "Font List Map" array
-
-@function setfont($name, $weight: regular) {
-  @if map-has-key($fonts, $name) {
-    @return map-get(map-get($fonts, $name), $weight);
-  } @else {
-    @warn "Couldn't find a font named `#{$name}`.";
-  }
-}
-
 
 // --------------------------------
 // Font Mixin
