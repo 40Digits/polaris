@@ -1,0 +1,100 @@
+// --------------------------------
+// Layout
+// --------------------------------
+
+// // max-width container with multiple options, see variables for options
+// // ex: @include row(medium)
+// @mixin row($width: false) {
+//   width: 100%;
+//   margin: 0 auto;
+//   @if $width == small {
+//     max-width: $max-width-small;
+//   } @else if $width == medium {
+//     max-width: $max-width-medium;
+//   } @else if $width == large {
+//     max-width: $max-width-large;
+//   } @else if $width == xlarge {
+//     max-width: $max-width-xlarge;
+//   } @else {
+//     max-width: $max-width-default;
+//   }
+// }
+
+// // gutter between columns, see variables for options
+// // ex: @include padding() or @include padding(large)
+// @mixin padding($size: false) {
+//   @if $size == large {
+//     padding-left: $gutter-base;
+//     padding-right: $gutter-base;
+//     @include mq(medium) {
+//       padding-left: $gutter-large;
+//       padding-right: $gutter-large;
+//     }
+//   } @else {
+//     padding-left: $gutter-base;
+//     padding-right: $gutter-base;
+//   }
+// }
+
+//---------------------------------
+// "An elegant weapon for a more civilized age"
+//---------------------------------
+
+// max-width container with multiple options, see variables for options
+// ex: @include row(medium)
+@mixin row($width: false) {
+  width: 100%;
+  margin: 0 auto;
+
+  @if $width != false {
+    max-width: $max-width-#{$width};
+  } @else {
+    max-width: rem(map-get($config, max-width));
+  }
+}
+
+// gutter between columns, see variables for options
+// ex: @include gutter() or @include gutter(large)
+@mixin gutter($size: map-deep-get($config, gutters, base)) {
+  $gutter-size: map-deep-get($config, gutters, $size);
+  padding-left: $gutter-size;
+  padding-right: $gutter-size;
+}
+
+// width of each column, total number of columns, size of gutter from options.scss map
+@mixin grid($width, $total: map-get($config, grid-column-count), $gutter-size: base) {
+
+  $gutter-val: map-deep-get($config, gutters, $gutter-size);
+  $missing-gutters: ($gutter-val * 2) / $total;
+  $column-width: percentage($width / $total);
+
+  & > .column {
+    float: left;
+    width: calc(#{$column-width} + #{$missing-gutters});
+    @include gutter($gutter-size);
+
+    &:first-child,
+    &:nth-child(#{$total + 1}n+#{$total + 1}) {
+      width: calc(#{$column-width} - #{$gutter-val} + #{$missing-gutters});
+      padding-left: 0;
+    }
+
+    &:nth-child(#{$total}n+#{$total}) {
+      width: calc(#{$column-width} - #{$gutter-val} + #{$missing-gutters});
+      padding-right: 0;
+    }
+  }
+}
+
+@mixin col($width, $order: false, $total: map-get($config, grid-column-count)) {
+  @include gutter;
+  float: left;
+  width: percentage($width / $total);
+
+  @if $order == 'first' {
+    padding-left: 0;
+  } @elseif $order == 'last' {
+    float: right;
+    padding-right: 0;
+  }
+}
