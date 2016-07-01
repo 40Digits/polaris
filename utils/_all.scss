@@ -1,6 +1,11 @@
-@import "functions/all";
+@import "getcolor";
 @import "fonts";
-@import "mixins/all";
+@import "media-queries";
+@import "js-breakpoints";
+@import "rem";
+@import "z-index";
+@import "modernizr";
+@import "placeholder";
 @import "utilities";
 @import "keyframes";
 @import "symbols";
