@@ -1,58 +1,46 @@
+// Global flag for this Stylesheet
+$print-media: false;
+
 // ================================
-// Default WP Meta
-// ================================
-@import "settings/wp-meta";
-
-// --------------------------------
-// Reset
-// --------------------------------
-
-@import "base/reset";
-
-// --------------------------------
 // Settings
-// --------------------------------
+// ================================
+@import "_settings.json";
+@import "app/config";
 
-@import "settings/all";
+@import "utils/functions/map-deep-get";
+@import "utils/functions/units";
+@import "settings/options";
+
+//---------------------------------
+// Reset Stylesheet
+//---------------------------------
+@import "base/reset";
 
 // --------------------------------
 // Helpers
 // --------------------------------
-
-@import "utils/all";
-
-// --------------------------------
-// Base
-// --------------------------------
-
-@import "base/all";
-
-// --------------------------------
-// Layout
-// --------------------------------
-
-@import "layout/all";
+@import "utils/functions/getcolor";
+@import "utils/fonts";
+@import "utils/mixins/media-queries";
+@import "utils/mixins/js-breakpoints";
+@import "utils/mixins/rem";
+@import "utils/mixins/z-index";
+@import "utils/mixins/modernizr";
+@import "utils/mixins/placeholder";
+@import "utils/utilities";
+@import "utils/keyframes";
+@import "utils/symbols";
+@import "utils/sprites";
 
 // --------------------------------
-// Vendor
+// Base Styles
 // --------------------------------
-
-@import "vendor/all";
-
-// --------------------------------
-// Components
-// --------------------------------
-
-@import "components/all";
+@import "base/defaults";
+@import "base/forms";
+// @import "base/wordpress";
+// @import "base/browse-happy";
 
 // --------------------------------
-// Modules
+// Custom App Styles
 // --------------------------------
-
-@import "modules/all";
-
-// --------------------------------
-// Application
-// --------------------------------
-
-@import "pages/all";
+@import "app/imports";

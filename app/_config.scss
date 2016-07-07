@@ -1,0 +1,32 @@
+//=================================
+// Custom App Config
+//=================================
+
+// Default WordPress Metadata
+/*!
+ * Theme Name: Grantham - 2016
+ * Theme URI: http://www.grantham.edu
+ * Author: 40Digits
+ * Author URI: http://www.40digits.com/
+ * Description:
+ * Version: 1.0
+ * Text Domain: grantham2016
+ * Template: grantham2012
+ */
+
+// --------------------------------
+// Note: New values or nested maps
+// overwrite old ones, so make sure
+// you copy the entire source before
+// setting new values below!
+// --------------------------------
+$app-config: (
+  colors: (
+    asdf: (
+      base: #123456
+    )
+  )
+);
+
+// Merge the new config into defaults
+$defaultConfig: map-merge($jsonSettings, $appConfig);
