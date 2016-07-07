@@ -39,10 +39,9 @@ footer, header, hgroup, menu, nav, section {
 html {
   box-sizing: border-box;
   overflow-y: scroll;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -54,24 +53,17 @@ body {
 *:after {
   position: relative;
   box-sizing: inherit;
-
-  // Hide tap on touch devices.
-  @media (max-width : 959px) {
-    * {
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-  }
 }
 
 img,
 object,
 embed {
-  max-width: 100%;
+  width: 100%;
   height: auto;
 }
 
 blockquote, q {
-  quotes:none;
+  quotes: none;
 }
 
 blockquote:before,
@@ -122,7 +114,7 @@ table {
 
 th {
   font-weight: bold;
-  vertical-align: bottom;
+  vertical-align: baseline;
 }
 
 td {
@@ -132,22 +124,22 @@ td {
 
 input,
 select {
-  vertical-align: middle;
+  vertical-align: baseline;
 }
 
 fieldset {
-    border: 1px solid #c0c0c0;
-    margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
 }
 
 button,
 input,
 select,
 textarea {
-    font-family: inherit;
-    font-size: 100%;
-    margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
 }
 
 sub,
@@ -166,8 +158,8 @@ sub {
 }
 
 mark {
-    background: #ff0;
-    color: #000;
+  background: #ff0;
+  color: #000;
 }
 
 pre {
