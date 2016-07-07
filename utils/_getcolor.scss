@@ -21,14 +21,3 @@
     @warn "Couldn't find a color named `#{$color-name}`.";
   }
 }
-
-
-/**
- * Alias for getcolor to allow transitions for older codebases
- * @deprecated
- */
-@function setcolor($color_name, $tone: base) {
-  @warn '`setcolor` is deprecated and will be removed in a future release! Use `getcolor` instead.';
-
-  @return getcolor($color-name, $tone);
-}

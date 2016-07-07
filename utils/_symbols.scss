@@ -30,17 +30,7 @@
 
 // Styles applied to the .symbol class when adding symbols to the markup.
 .symbol:before {
-  font-family: "symbols";
-  width: 1em;
-  margin: 0;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-align: center;
-  text-decoration: inherit;
-  text-transform: none;
-  line-height: 1em;
-  speak: none;
+  @extend %symbols;
 }
 
 // Mixin to add in your own symbol through the css.

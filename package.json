@@ -10,10 +10,6 @@
   "author": "40Digits",
   "contributors": [
     {
-      "name": "Besim Huskic",
-      "email": "besim@40digits.com"
-    },
-    {
       "name": "Brandon Cash",
       "email": "brandon@40digits.com"
     },
@@ -22,21 +18,21 @@
       "email": "chad@40digits.com"
     },
     {
-      "name": "CK Hicks",
-      "email": "ck@40digits.com"
-    },
-    {
       "name": "Preston Richey",
       "email": "preston@40digits.com"
+    },
+    {
+      "name": "CK Hicks",
+      "email": "ck@40digits.com"
     }
   ],
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
     "colors": "^1.1.2",
-    "glob": "^7.0.3",
-    "node-notifier": "^4.5.0",
-    "node-sass": "^3.4.2",
-    "postcss": "^5.0.19"
+    "glob": "^7.0.5",
+    "node-notifier": "^4.6.0",
+    "node-sass": "^3.8.0",
+    "postcss": "^5.0.21"
   }
 }
