@@ -99,9 +99,7 @@ $mq: (
   'max-xlarge'    : '(max-width: $mq-max-xlarge)',
   'max-xxlarge'   : '(max-width: $mq-max-xxlarge)',
 
-  'print'         : 'print',
-  'tab-port'      : 'screen and (min-device-width: $mq-min-medium) and (max-device-width: $mq-max-medium) and (orientation: portrait)',
-  'tab-land'      : 'screen and (min-device-width: $mq-min-medium) and (max-device-width: $mq-tablet-landscape) and (orientation: landscape)'
+  'print'         : 'print'
 );
 
 
