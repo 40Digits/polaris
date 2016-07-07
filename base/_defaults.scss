@@ -8,7 +8,7 @@
 
 ::selection {
   background: #777;
-  color: #fff;
+  color: white;
   text-shadow: none;
 }
 
@@ -21,22 +21,19 @@ html {
 }
 
 body {
-  background: #fff;
-  color: #2C3E50;
-  @include setfont(default);
+  background: white;
+  color: black;
+  font-family: $font-default
   font-size: $body-font-size;
   @include font-smoothing;
 }
 
 a {
-  color: #2C3E50;
+  color: blue;
   text-decoration: none;
   &:hover,
   &:focus {
-    color: getcolor(gray);
-  }
-  &:focus {
-    outline: none;
+    color: red;
   }
 }
 
@@ -52,21 +49,12 @@ h4,
 h5,
 h6 {
   line-height: 1;
-  a {
-    color: #000;
-  }
 }
 
 
 // --------------------------------
 // Text Components
 // --------------------------------
-
-p,
-dl,
-address {
-  @extend %type-medium;
-}
 
 p,
 li,
@@ -78,12 +66,4 @@ dd {
 
 li {
   line-height: 1;
-}
-
-// --------------------------------
-// Extend WYSIWYG Styles
-// --------------------------------
-
-.wysiwyg {
-  @extend %wysiwyg;
 }

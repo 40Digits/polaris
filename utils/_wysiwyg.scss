@@ -2,44 +2,16 @@
 // Wysiwyg Styles
 // --------------------------------
 
-%wysiwyg {
+@mixin wysiwyg {
 
-  h1,
-  h2 {
-    @extend %hsize-xlarge;
-    font-weight: 300;
-  }
+  // your styles here
 
-  h3,
-  h4 {
-    @extend %hsize-large;
-    font-weight: 400;
-  }
+}
 
-  h5,
-  h6 {
-    @extend %hsize-medium;
-    font-weight: 700;
-  }
+// --------------------------------
+// Extend WYSIWYG Styles
+// --------------------------------
 
-  p,
-  li {
-    @extend %type-medium;
-  }
-
-  a {
-    color: #E74C3C;
-  }
-
-  p,
-  ul,
-  ol {
-    margin-bottom: rem(30px);
-  }
-
-  ul,
-  ol {
-    margin-left: rem(30px);
-  }
-
+.wysiwyg {
+  @include wysiwyg;
 }

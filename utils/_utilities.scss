@@ -6,18 +6,16 @@
 @mixin font-smoothing {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
 
 // Remove font-smoothing if not necessary
 @mixin no-font-smoothing {
   -webkit-font-smoothing: subpixel-antialiased;
   -moz-osx-font-smoothing: auto;
-  text-shadow: none;
 }
 
 // Absolute center content
-%abs-center {
+@mixin abs-center {
   display: block;
   top: 50%;
   left: 50%;
@@ -26,7 +24,7 @@
 
 // Absolute Center Vertically (ie9+)
 // Parent container will need to have a height for it to work.
-%abs-center-vertical {
+@mixin abs-center-vertical {
   display: block;
   top: 50%;
   transform: translateY(-50%);
@@ -34,14 +32,14 @@
 
 // Absolute Center Horizontally (ie9+)
 // Parent container will need to have a height for it to work.
-%abs-center-horizontal {
+@mixin abs-center-horizontal {
   display: block;
   left: 50%;
   transform: translateX(-50%);
 }
 
 // Visually hide elements while at the same time make them accessible on screen readers
-%visually-hidden {
+@mixin visually-hidden {
   margin: -1px;
   padding: 0;
   width: 1px;
@@ -53,23 +51,23 @@
 }
 
 // Ellipsis
-%ellipsis {
+@mixin ellipsis {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
 // Remove all list styling
-// ex: @extend %naked-list
-%naked-list {
+// ex: @include naked-list
+@mixin naked-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 // Remove all button styling and reset it to default
-// ex: @extend %naked-button
-%naked-button {
+// ex: @include naked-button
+@mixin naked-button {
   background: transparent;
   outline: none;
   border: 0;
@@ -81,37 +79,8 @@
 
 
 // --------------------------------
-// Cross Browser (legacy)
-// --------------------------------
-
-// Cross-browser background-cover for old IE
-// ex: @extend %bg-cover
-// https://raw.githubusercontent.com/louisremi/background-size-polyfill/gh-pages/backgroundsize.min.htc
-%bg-cover {
-  background-repeat: no-repeat;
-  background-size: cover;
-  -ms-behavior: url('assets/images/backgroundsize.min.htc');
-  background-position: center center;
-}
-
-
-// --------------------------------
 // Clearfix
 // --------------------------------
-
-%cf {
-  zoom: 1;
-  &:before,
-  &:after {
-    content: "\0020";
-    display: block;
-    height: 0;
-    overflow: hidden;
-  }
-  &:after {
-    clear: both;
-  }
-}
 
 @mixin cf {
   zoom: 1;
@@ -136,10 +105,10 @@
 .cf,
 .clear,
 .clearfix {
-  @extend %cf;
+  @include cf;
 }
 
 // Visually hide elements while at the same time make them accessible on screen readers
 .visually-hidden {
-  @extend %visually-hidden;
+  @include visually-hidden;
 }
