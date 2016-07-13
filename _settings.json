@@ -1,0 +1,43 @@
+{
+  "jsonSettings": {
+
+    "html-font-size": "62.5%",
+    "body-font-size": "16px",
+    "em-base": "16",
+    "base-font-size": "10px",
+    "rem-with-px-fallback": "false",
+
+    "colors": {
+      "black": {
+        "base": "#000"
+      },
+      "white": {
+        "base": "#fff"
+      }
+    },
+
+    "gutter-base":   "10px",
+    "gutter-medium": "15px",
+    "gutter-large":  "30px",
+
+    "mq-mini":     "480px",
+    "mq-small":    "600px",
+    "mq-medium":   "768px",
+    "mq-large":    "960px",
+    "mq-xlarge":   "1140px",
+    "mq-xxlarge":  "1280px",
+    "mq-xxxlarge": "1640px",
+
+    "z-layers": {
+      "pit":      "-1",
+      "default":  "1",
+      "footer":   "5",
+      "header":   "10",
+      "nav":      "20",
+      "announce": "30",
+      "modal":    "40",
+      "overlay":  "50"
+    }
+
+  }
+}

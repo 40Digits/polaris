@@ -7,8 +7,8 @@
 // --------------------------------
 
 ::selection {
-  background: #777;
-  color: white;
+  background: darken(getcolor(white), 20%);
+  color: getcolor(white);
   text-shadow: none;
 }
 
@@ -17,14 +17,14 @@
 // --------------------------------
 
 html {
-  font-size: 62.5%;
+  font-size: map-get($defaultConfig, 'html-font-size');
 }
 
 body {
-  background: white;
-  color: black;
-  font-family: $font-default
-  font-size: $body-font-size;
+  background: getcolor(white);
+  color: getcolor(black);
+  font-family: $font-default;
+  font-size: map-get($defaultConfig, 'body-font-size');
   @include font-smoothing;
 }
 

@@ -1,0 +1,12 @@
+/**
+ * Returns a color with an optional tone from the map
+ *
+ * @param {string}  $color_name     The base name of the color
+ * @param {tone}    ($tone|'base')  The tone of that color or 'base'
+ *
+ * @return {string} The matching color's value from the map
+ */
+
+@function getcolor($color-name, $tone: base) {
+  @return map-deep-get($config, colors, $color-name, $tone);
+}

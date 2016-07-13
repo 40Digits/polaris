@@ -1,5 +1,5 @@
-# Polaris
+# Polaris (Twinkle)
 
-This is a simple cleanup of the SASS toolkit we know and love. Take a look around, you'll like the changes.
+> "When you wish upon a star..."
 
-"A philosopher once said 'Are we human because we gaze at the stars, or do we gaze at them because we are human?"
+This is one step further than we have gone before: JSON settings for syncing between SCSS/JS, two folders (core settings and app styles), etc.

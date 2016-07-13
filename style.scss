@@ -7,38 +7,37 @@ $print-media: false;
 @import "_settings.json";
 @import "app/config";
 
-@import "utils/functions/map-deep-get";
-@import "utils/functions/units";
+@import "settings/map-deep-get";
+@import "settings/units";
 @import "settings/options";
 
 //---------------------------------
 // Reset Stylesheet
 //---------------------------------
-@import "base/reset";
+@import "settings/reset";
 
 // --------------------------------
 // Helpers
 // --------------------------------
-@import "utils/functions/getcolor";
-@import "utils/fonts";
-@import "utils/mixins/media-queries";
-@import "utils/mixins/js-breakpoints";
-@import "utils/mixins/rem";
-@import "utils/mixins/z-index";
-@import "utils/mixins/modernizr";
-@import "utils/mixins/placeholder";
-@import "utils/utilities";
-@import "utils/keyframes";
-@import "utils/symbols";
-@import "utils/sprites";
+@import "settings/getcolor";
+@import "settings/fonts";
+@import "settings/media-queries";
+@import "settings/js-breakpoints";
+@import "settings/rem";
+@import "settings/keyframes";
+@import "settings/modernizr";
+@import "settings/placeholder";
+@import "settings/print";
+@import "settings/symbols";
+@import "settings/sprites";
+@import "settings/utilities";
+@import "settings/z-index";
 
 // --------------------------------
-// Base Styles
+// settings Styles
 // --------------------------------
-@import "base/defaults";
-@import "base/forms";
-// @import "base/wordpress";
-// @import "base/browse-happy";
+@import "settings/defaults";
+@import "settings/forms";
 
 // --------------------------------
 // Custom App Styles

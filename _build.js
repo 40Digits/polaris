@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const sass = require('node-sass');
+const jsonImporter = require('node-sass-json-importer');
 const postcss = require('postcss');
 const glob = require('glob');
 const autoprefixer = require('autoprefixer');
@@ -64,12 +65,15 @@ function getError(error) {
   return renderedMessage;
 }
 
-// Looks for each SCSS or Sass file
+// Looks for each SCSS or SASS file
 glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
   if (err) {
     console.log(getError(err));
     return;
   }
+
+  // Adjust the SASS config to import JSON
+  config.sass.importer = jsonImporter;
 
   files.forEach(file => {
     sass.render(Object.assign({}, config.sass, { file }), (renderErr, result) => {

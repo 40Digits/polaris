@@ -2,7 +2,6 @@
 // https://github.com/sass/node-sass#options
 exports.sass = {
   includePath: __dirname,
-  importer: jsonImporter,
   outputStyle: 'compressed',
   sourceMap: true,
   sourceMapEmbed: true,
