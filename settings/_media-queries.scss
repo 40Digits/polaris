@@ -34,22 +34,22 @@
       // if max media query .. ex: @include mq(600px, max)
       // we take the 600px and subtract 1px for the max-width to work with mobile-first
       } @else if $reverse == "max" {
-        @media screen and (max-width: em($point - 1px, 16px)) {
+        @media screen and (max-width: em($point - 1px)) {
           @content;
         }
 
       // if min media query ... ex: @include mq(600px)
       // we just take the unit passed and generate the min-width query
       } @else {
-        @media screen and (min-width: em($point, 16px)) {
+        @media screen and (min-width: em($point)) {
           @content;
         }
       }
 
     // otherwise if it's not a number
     // we are going to check if the value matches our media query map in "settings/_options.scss"
-    } @else if map-has-key($mq, $point) {
-      @media #{inspect(map-get($mq, $point))} {
+    } @else if map-get($config, "mq-#{$point}") {
+      @media #{inspect(map-get($config, "mq-#{$point}"))} {
         @content;
       }
     } @else {

@@ -30,7 +30,7 @@
     content: " (" attr(href) ")";
     font-style: italic;
     text-transform: none;
-    @include setfont(default);
+    font-family: sans-serif;
     font-size: rem(11px);
     opacity: .8;
   }

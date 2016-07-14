@@ -11,6 +11,9 @@
       "black": {
         "base": "#000"
       },
+      "gray": {
+        "base": "#aaa"
+      },
       "white": {
         "base": "#fff"
       }

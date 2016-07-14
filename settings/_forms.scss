@@ -74,7 +74,6 @@ textarea:focus {
 
 // Submit input specific styling
 input[type="submit"] {
-  @extend %naked-button;
   border-radius: 0;
   height: auto;
 }

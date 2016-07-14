@@ -7,8 +7,8 @@
 // --------------------------------
 
 ::selection {
-  background: darken(getcolor(white), 20%);
-  color: getcolor(white);
+  background: getcolor(gray, base);
+  color: getcolor(white, base);
   text-shadow: none;
 }
 
@@ -21,7 +21,7 @@ html {
 }
 
 body {
-  background: getcolor(white);
+  background: getcolor(white, base);
   color: getcolor(black);
   font-family: $font-default;
   font-size: map-get($defaultConfig, 'body-font-size');
