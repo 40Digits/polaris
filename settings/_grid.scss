@@ -1,5 +1,107 @@
+$columns: 12; // total number
+$gutters: 2; // REM
+
+.container-fluid,
+.container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-fluid {
+  padding-right: {$gutters}rem;
+  padding-left: {$gutters}rem;
+}
+
+.row {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: -{$gutters / 4}rem;
+  margin-left: -{$gutters / 4}rem;
+}
+
+.row.reverse {
+  flex-direction: row-reverse;
+}
+
+.col.reverse {
+  flex-direction: column-reverse;
+}
+
+.row {
+
+  [class*="col-"] {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    padding-right: {$gutters / 4}rem;
+    padding-left: {$gutters / 4}rem;
+  }
+
+  @for $i from 1 through $columns {
+
+    .col-$i {
+      flex-basis: percentage($i / $columns);
+      max-width: percentage($i / $columns);
+    }
+
+    .offset-$i {
+      margin-left: percentage($i / $columns);
+    }
+
+  }
+
+  .start {
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  .center {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .end {
+    justify-content: flex-end;
+    text-align: end;
+  }
+
+  .top {
+    align-items: flex-start;
+  }
+
+  .middle {
+    align-items: center;
+  }
+
+  .bottom {
+    align-items: flex-end;
+  }
+
+  .around {
+    justify-content: space-around;
+  }
+
+  .between {
+    justify-content: space-between;
+  }
+
+  .first {
+    order: -1;
+  }
+
+  .last {
+    order: 1;
+  }
+
+}
+
 // --------------------------------
-// Layout
+// OLD Grid(s)
 // --------------------------------
 
 // // max-width container with multiple options, see variables for options
@@ -42,59 +144,59 @@
 
 // max-width container with multiple options, see variables for options
 // ex: @include row(medium)
-@mixin row($width: false) {
-  width: 100%;
-  margin: 0 auto;
+// @mixin row($width: false) {
+//   width: 100%;
+//   margin: 0 auto;
 
-  @if $width != false {
-    max-width: $max-width-#{$width};
-  } @else {
-    max-width: rem(map-get($config, max-width));
-  }
-}
+//   @if $width != false {
+//     max-width: $max-width-#{$width};
+//   } @else {
+//     max-width: rem(map-get($config, max-width));
+//   }
+// }
 
-// gutter between columns, see variables for options
-// ex: @include gutter() or @include gutter(large)
-@mixin gutter($size: map-deep-get($config, gutters, base)) {
-  $gutter-size: map-deep-get($config, gutters, $size);
-  padding-left: $gutter-size;
-  padding-right: $gutter-size;
-}
+// // gutter between columns, see variables for options
+// // ex: @include gutter() or @include gutter(large)
+// @mixin gutter($size: map-deep-get($config, gutters, base)) {
+//   $gutter-size: map-deep-get($config, gutters, $size);
+//   padding-left: $gutter-size;
+//   padding-right: $gutter-size;
+// }
 
-// width of each column, total number of columns, size of gutter from options.scss map
-@mixin grid($width, $total: map-get($config, grid-column-count), $gutter-size: base) {
+// // width of each column, total number of columns, size of gutter from options.scss map
+// @mixin grid($width, $total: map-get($config, grid-column-count), $gutter-size: base) {
 
-  $gutter-val: map-deep-get($config, gutters, $gutter-size);
-  $missing-gutters: ($gutter-val * 2) / $total;
-  $column-width: percentage($width / $total);
+//   $gutter-val: map-deep-get($config, gutters, $gutter-size);
+//   $missing-gutters: ($gutter-val * 2) / $total;
+//   $column-width: percentage($width / $total);
 
-  & > .column {
-    float: left;
-    width: calc(#{$column-width} + #{$missing-gutters});
-    @include gutter($gutter-size);
+//   & > .column {
+//     float: left;
+//     width: calc(#{$column-width} + #{$missing-gutters});
+//     @include gutter($gutter-size);
 
-    &:first-child,
-    &:nth-child(#{$total + 1}n+#{$total + 1}) {
-      width: calc(#{$column-width} - #{$gutter-val} + #{$missing-gutters});
-      padding-left: 0;
-    }
+//     &:first-child,
+//     &:nth-child(#{$total + 1}n+#{$total + 1}) {
+//       width: calc(#{$column-width} - #{$gutter-val} + #{$missing-gutters});
+//       padding-left: 0;
+//     }
 
-    &:nth-child(#{$total}n+#{$total}) {
-      width: calc(#{$column-width} - #{$gutter-val} + #{$missing-gutters});
-      padding-right: 0;
-    }
-  }
-}
+//     &:nth-child(#{$total}n+#{$total}) {
+//       width: calc(#{$column-width} - #{$gutter-val} + #{$missing-gutters});
+//       padding-right: 0;
+//     }
+//   }
+// }
 
-@mixin col($width, $order: false, $total: map-get($config, grid-column-count)) {
-  @include gutter;
-  float: left;
-  width: percentage($width / $total);
+// @mixin col($width, $order: false, $total: map-get($config, grid-column-count)) {
+//   @include gutter;
+//   float: left;
+//   width: percentage($width / $total);
 
-  @if $order == 'first' {
-    padding-left: 0;
-  } @elseif $order == 'last' {
-    float: right;
-    padding-right: 0;
-  }
-}
+//   @if $order == 'first' {
+//     padding-left: 0;
+//   } @elseif $order == 'last' {
+//     float: right;
+//     padding-right: 0;
+//   }
+// }
