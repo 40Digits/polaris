@@ -19,11 +19,12 @@ $print-media: false;
 // --------------------------------
 // Helpers
 // --------------------------------
-@import "settings/getcolor";
-@import "settings/fonts";
+@import "settings/rem";
+@import "settings/grid";
 @import "settings/media-queries";
 @import "settings/js-breakpoints";
-@import "settings/rem";
+@import "settings/getcolor";
+@import "settings/fonts";
 @import "settings/keyframes";
 @import "settings/modernizr";
 @import "settings/placeholder";

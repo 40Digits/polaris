@@ -8,8 +8,8 @@ $gutters: 2; // REM
 }
 
 .container-fluid {
-  padding-right: {$gutters}rem;
-  padding-left: {$gutters}rem;
+  padding-right: #{$gutters}rem;
+  padding-left: #{$gutters}rem;
 }
 
 .row {
@@ -18,8 +18,8 @@ $gutters: 2; // REM
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-right: -{$gutters / 4}rem;
-  margin-left: -{$gutters / 4}rem;
+  margin-right: -#{$gutters / 4}rem;
+  margin-left: -#{$gutters / 4}rem;
 }
 
 .row.reverse {
@@ -30,75 +30,66 @@ $gutters: 2; // REM
   flex-direction: column-reverse;
 }
 
-.row {
+@mixin col($i: 0, $z: false) {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  flex-grow: 1;
+  flex-basis: 0;
+  flex-basis: percentage($i / $columns);
+  max-width: 100%;
+  max-width: percentage($i / $columns);
+  padding-right: #{$gutters / 4}rem;
+  padding-left: #{$gutters / 4}rem;
 
-  [class*="col-"] {
-    box-sizing: border-box;
-    flex: 0 0 auto;
-    flex-grow: 1;
-    flex-basis: 0;
-    max-width: 100%;
-    padding-right: {$gutters / 4}rem;
-    padding-left: {$gutters / 4}rem;
-  }
 
-  @for $i from 1 through $columns {
-
-    .col-$i {
-      flex-basis: percentage($i / $columns);
-      max-width: percentage($i / $columns);
-    }
-
-    .offset-$i {
-      margin-left: percentage($i / $columns);
-    }
-
-  }
-
-  .start {
+  @if $z == start {
     justify-content: flex-start;
     text-align: start;
   }
 
-  .center {
+  @if $z == center {
     justify-content: center;
     text-align: center;
   }
 
-  .end {
+  @if $z == end {
     justify-content: flex-end;
     text-align: end;
   }
 
-  .top {
+  @if $z == top {
     align-items: flex-start;
   }
 
-  .middle {
+  @if $z == middle {
     align-items: center;
   }
 
-  .bottom {
+  @if $z == bottom {
     align-items: flex-end;
   }
 
-  .around {
+  @if $z == around {
     justify-content: space-around;
   }
 
-  .between {
+  @if $z == between {
     justify-content: space-between;
   }
 
-  .first {
+  @if $z == first {
     order: -1;
   }
 
-  .last {
+  @if $z == last {
     order: 1;
   }
-
 }
+
+@mixin offset($i: 0) {
+  margin-left: percentage($i / $columns);
+}
+
 
 // --------------------------------
 // OLD Grid(s)
