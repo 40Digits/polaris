@@ -14,30 +14,6 @@
   -moz-osx-font-smoothing: auto;
 }
 
-// Absolute center content
-@mixin abs-center {
-  display: block;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-// Absolute Center Vertically (ie9+)
-// Parent container will need to have a height for it to work.
-@mixin abs-center-vertical {
-  display: block;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-// Absolute Center Horizontally (ie9+)
-// Parent container will need to have a height for it to work.
-@mixin abs-center-horizontal {
-  display: block;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 // Visually hide elements while at the same time make them accessible on screen readers
 @mixin visually-hidden {
   margin: -1px;
