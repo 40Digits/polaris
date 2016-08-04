@@ -2,11 +2,14 @@
 $print-media: false;
 
 // ================================
-// Settings
+// Your App Settings
 // ================================
 @import "_settings.json";
 @import "app/config";
 
+//---------------------------------
+// Setup
+//---------------------------------
 @import "settings/map-deep-get";
 @import "settings/units";
 @import "settings/options";
