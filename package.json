@@ -8,7 +8,7 @@
     "build": "node _build.js"
   },
   "_backup": {
-    "build": "node _src/sass/_build.js --output_dir /",
+    "build": "node _src/sass/_build.js",
     "watch:sass": "chokidar \"./_src/sass/**/*.scss\" -c \"npm run build\""
   },
   "author": "40Digits",
