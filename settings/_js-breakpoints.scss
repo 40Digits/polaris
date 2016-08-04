@@ -4,16 +4,14 @@
 
 // Do no edit unless you know what you are doing.
 
-$public_breakpoints: (
-  'mq-tiny':      'max-tiny',
-  'mq-mini':      'mini',
-  'mq-small':     'small',
-  'mq-medium':    'medium',
-  'mq-large':     'large',
-  'mq-xlarge':    'xlarge',
-  'mq-xxlarge':   'xxlarge',
-  'mq-xxxlarge':  'xxxlarge'
-);
+@function build-js-breakpoints() {
+  $breakpoint_map: ();
+  @each $name, $value in map-get($config, mq) {
+    $breakpoint_map: map-merge($breakpoint_map, ($name: str-slice($name, 4)));
+  }
+  @return $breakpoint_map;
+}
+$public_breakpoints: build-js-breakpoints();
 
 // --------------------------------
 // Setup mixins

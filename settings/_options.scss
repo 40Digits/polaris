@@ -8,35 +8,30 @@ $config: (
   gutter-large:  rem(map-get($defaultConfig, gutter-large)),
 
   // Rows Max-Width
-  max-width-default: rem(map-get($defaultConfig, mq-xlarge)),
-  max-width-small:   rem(map-get($defaultConfig, mq-mini)),
-  max-width-medium:  rem(map-get($defaultConfig, mq-small)),
-  max-width-large:   rem(map-get($defaultConfig, mq-medium)),
-  max-width-xlarge:  rem(map-get($defaultConfig, mq-large)),
-  max-width-xxlarge:  rem(map-get($defaultConfig, mq-xlarge)),
-
-  // Animation
-  cubic:       cubic-bezier(0.63, 0.64, 0.3, 1),
-  timing:      500ms,
-  timing-fast: 350ms,
+  max-width-default: rem(map-deep-get($defaultConfig, mq, mq-xlarge)),
+  max-width-small:   rem(map-deep-get($defaultConfig, mq, mq-mini)),
+  max-width-medium:  rem(map-deep-get($defaultConfig, mq, mq-small)),
+  max-width-large:   rem(map-deep-get($defaultConfig, mq, mq-medium)),
+  max-width-xlarge:  rem(map-deep-get($defaultConfig, mq, mq-large)),
+  max-width-xxlarge:  rem(map-deep-get($defaultConfig, mq, mq-xlarge)),
 
   // Media Queries - min-width
-  mq-mini:     "(min-width: #{em(map-get($defaultConfig, mq-mini))})",
-  mq-small:    "(min-width: #{em(map-get($defaultConfig, mq-small))})",
-  mq-medium:   "(min-width: #{em(map-get($defaultConfig, mq-medium))})",
-  mq-large:    "(min-width: #{em(map-get($defaultConfig, mq-large))})",
-  mq-xlarge:   "(min-width: #{em(map-get($defaultConfig, mq-xlarge))})",
-  mq-xxlarge:  "(min-width: #{em(map-get($defaultConfig, mq-xxlarge))})",
-  mq-xxxlarge: "(min-width: #{em(map-get($defaultConfig, mq-xxxlarge))})",
+  mq-mini:     "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-mini))})",
+  mq-small:    "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-small))})",
+  mq-medium:   "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-medium))})",
+  mq-large:    "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-large))})",
+  mq-xlarge:   "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xlarge))})",
+  mq-xxlarge:  "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xxlarge))})",
+  mq-xxxlarge: "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xxxlarge))})",
 
   // Media Queries - max-width
-  mq-max-tiny:    "(max-width: #{em(map-get($defaultConfig, mq-mini) - 1px)})",
-  mq-max-mini:    "(max-width: #{em(map-get($defaultConfig, mq-small) - 1px)})",
-  mq-max-small:   "(max-width: #{em(map-get($defaultConfig, mq-medium) - 1px)})",
-  mq-max-medium:  "(max-width: #{em(map-get($defaultConfig, mq-large) - 1px)})",
-  mq-max-large:   "(max-width: #{em(map-get($defaultConfig, mq-xlarge) - 1px)})",
-  mq-max-xlarge:  "(max-width: #{em(map-get($defaultConfig, mq-xxlarge) - 1px)})",
-  mq-max-xxlarge: "(max-width: #{em(map-get($defaultConfig, mq-xxxlarge) - 1px)})",
+  mq-max-tiny:    "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-mini) - 1px)})",
+  mq-max-mini:    "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-small) - 1px)})",
+  mq-max-small:   "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-medium) - 1px)})",
+  mq-max-medium:  "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-large) - 1px)})",
+  mq-max-large:   "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xlarge) - 1px)})",
+  mq-max-xlarge:  "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xxlarge) - 1px)})",
+  mq-max-xxlarge: "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xxxlarge) - 1px)})",
 
   mq-print: "print"
 );

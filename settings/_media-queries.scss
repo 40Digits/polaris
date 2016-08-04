@@ -48,8 +48,8 @@
 
     // otherwise if it's not a number
     // we are going to check if the value matches our media query map in "settings/_options.scss"
-    } @else if map-get($config, "mq-#{$point}") {
-      @media #{inspect(map-get($config, "mq-#{$point}"))} {
+    } @else if map-deep-get($config, mq, "mq-#{$point}") {
+      @media #{inspect(map-deep-get($config, mq, "mq-#{$point}"))} {
         @content;
       }
     } @else {
