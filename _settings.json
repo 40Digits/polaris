@@ -19,6 +19,9 @@
       }
     },
 
+    "grid-columns": 12,
+    "grid-gutters": 2,
+
     "gutter-base":   "10px",
     "gutter-medium": "15px",
     "gutter-large":  "30px",
