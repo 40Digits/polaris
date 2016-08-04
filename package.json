@@ -5,10 +5,7 @@
   "main": "_build.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node _build.js"
-  },
-  "_backup": {
-    "build": "node _src/sass/_build.js",
+    "build": "node _build.js",
     "watch:sass": "chokidar \"./_src/sass/**/*.scss\" -c \"npm run build\""
   },
   "author": "40Digits",
