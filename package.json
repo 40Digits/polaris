@@ -33,6 +33,7 @@
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^6.3.6",
+    "chokidar": "^1.6.0",
     "colors": "^1.1.2",
     "glob": "^7.0.5",
     "node-notifier": "^4.6.0",
