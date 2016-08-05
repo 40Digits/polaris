@@ -1,42 +1,25 @@
 // Cleaned up and SASS-ified from: https://github.com/daneden/Toast/blob/master/scss/_grid.scss
 
-$columns: map-get($config, grid-columns); // total number
-$gutters: map-get($config, grid-gutters); // REM
-
-@mixin container($type: false) {
-  margin-right: auto;
-  margin-left: auto;
-
-  @if $type == fluid {
-    padding-right: #{$gutters}rem;
-    padding-left: #{$gutters}rem;
-  }
-}
+$column-defaults: map-get($config, grid-columns); // total number
+$gutter-defaults: map-get($config, grid-gutters); // REM value
 
 @mixin row($reverse: false) {
-  box-sizing: border-box;
   display: flex;
-  flex: 0 1 auto;
-  flex-direction: row;
   flex-wrap: wrap;
-  margin-right: -#{$gutters / 4}rem;
-  margin-left: -#{$gutters / 4}rem;
+  justify-content: space-between;
+  flex-direction: row;
 
-  @if $reverse == reverse {
+  @if $reverse {
     flex-direction: row-reverse;
   }
 }
 
-@mixin col($width: 0, $type: false) {
-  box-sizing: border-box;
-  flex: 0 0 auto;
-  flex-grow: 1;
-  flex-basis: 0;
-  flex-basis: percentage($width / $columns);
-  max-width: 100%;
-  max-width: percentage($width / $columns);
-  padding-right: #{$gutters / 4}rem;
-  padding-left: #{$gutters / 4}rem;
+@mixin col($span: 1, $type: false, $number: $column-defaults, $gutter: $gutter-defaults) {
+  flex: 0 0 calc(#{((100% - $gutter * ($number - $span)) / $number) * $span});
+
+  @if $type == grow {
+    flex-grow: 1;
+  }
 
   @if $type == reverse {
     flex-direction: column-reverse;
@@ -86,6 +69,6 @@ $gutters: map-get($config, grid-gutters); // REM
   }
 }
 
-@mixin offset($width: 0) {
-  margin-left: percentage($width / $columns);
-}
+// @mixin offset($width: 0) {
+//   margin-left: percentage($width / $columns);
+// }
