@@ -11,7 +11,6 @@ const notifier = require('node-notifier');
 
 const config = require('./_config.js');
 
-
 colors.setTheme(config.colorTheme);
 
 /**
@@ -77,7 +76,8 @@ glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
   files.forEach(file => {
     sass.render(Object.assign({}, config.sass, { file }), (renderError, result) => {
       if (renderError) {
-        renderError.srcFile = file;
+        const error = renderError;
+        error.srcFile = file;
         console.log(getError(renderError));
 
         if (config.errorNotifications) {
