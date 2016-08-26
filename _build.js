@@ -6,9 +6,11 @@ const sass = require('node-sass');
 const postcss = require('postcss');
 const glob = require('glob');
 const autoprefixer = require('autoprefixer');
-const config = require('./_config.js');
 const colors = require('colors');
 const notifier = require('node-notifier');
+
+const config = require('./_config.js');
+
 
 colors.setTheme(config.colorTheme);
 
@@ -16,20 +18,21 @@ colors.setTheme(config.colorTheme);
  * Returns the resolved output file path for the compiled stylesheets
  * @return {String} The destination dir
  */
-function getDestPath(file) {
+function getDestinationPath(file) {
   const flag = '--output_dir';
-  const optionIndex = process.argv.indexOf(flag);
-  const destDir = optionIndex !== -1 ? process.argv[optionIndex + 1] : process.cwd();
+  const flagIndex = process.argv.indexOf(flag);
+  const flagValue = process.argv[flagIndex + 1];
+  const destinationDir = flagIndex !== -1 ? flagValue : process.cwd();
   const filename = path.parse(file).name;
 
   // Throw an error when the --output_dir flag is used but no path is given
-  if (typeof destDir === 'undefined') {
+  if (typeof destinationDir === 'undefined') {
     console.log(new Error(`Don\'t forget to declare a path with the --output_dir flag!
     Example: "node _build.js --output_dir path/to/output/dir/"`));
     return process.exit(1);
   }
 
-  return path.resolve(destDir, `${filename}.css`);
+  return path.resolve(destinationDir, `${filename}.css`);
 }
 
 /**
@@ -72,16 +75,15 @@ glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
   }
 
   files.forEach(file => {
-    sass.render(Object.assign({}, config.sass, { file }), (renderErr, result) => {
-      if (renderErr) {
-        const error = renderErr;
-        error.srcFile = file;
-        console.log(getError(renderErr));
+    sass.render(Object.assign({}, config.sass, { file }), (renderError, result) => {
+      if (renderError) {
+        renderError.srcFile = file;
+        console.log(getError(renderError));
 
         if (config.errorNotifications) {
           notifier.notify({
             title: 'Sass Compile Error',
-            message: renderErr.message,
+            message: renderError.message,
           });
         }
 
@@ -92,16 +94,16 @@ glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
         .use(autoprefixer(config.autoprefixer))
         .process(result.css)
         .then(processedResult => {
-          const dest = getDestPath(file);
+          const destination = getDestinationPath(file);
 
-          fs.writeFile(dest, processedResult.css, writeErr => {
-            if (writeErr) {
-              console.log(getError(writeErr));
+          fs.writeFile(destination, processedResult.css, writeError => {
+            if (writeError) {
+              console.log(getError(writeError));
               return;
             }
 
             const srcRelative = path.relative(process.cwd(), file);
-            const destRelative = path.relative(process.cwd(), dest);
+            const destRelative = path.relative(process.cwd(), destination);
             const successMessage = ' SUCCESS '.success.successBg;
 
             console.log(`${successMessage}`
