@@ -9,7 +9,6 @@
 input,
 textarea,
 select {
-  outline: none;
   border-radius: 0;
   border: rem(1px) solid #eee;
   padding: rem(5px 10px);
@@ -67,7 +66,6 @@ label {
 // Focus specific styling
 input:focus,
 textarea:focus {
-  outline: none;
   border-color: #eee;
   color: #000;
 }
