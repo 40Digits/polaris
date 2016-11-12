@@ -14,13 +14,7 @@
  * Template: parentthemeifneededifnotjustremovethislinekthxbye
  */
 
-// --------------------------------
-// Note: New values or nested maps
-// overwrite old ones, so make sure
-// you copy entire JSON source if
-// defining new values!
-// --------------------------------
-$appConfig: (
+$defaultConfig: (
   html-font-size: 62.5%,
   body-font-size: 16px,
   em-base: 16,
@@ -65,6 +59,3 @@ $appConfig: (
     overlay:  50
   )
 );
-
-// Merge the new config into defaults
-$defaultConfig: map-merge($jsonSettings, $appConfig);
