@@ -16,14 +16,26 @@
 
 // Visually hide elements while at the same time make them accessible on screen readers
 @mixin visually-hidden {
-  margin: -1px;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
+  border: 0;
   clip: rect(0 0 0 0);
-  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
   position: absolute;
+  width: 1px;
+  white-space: nowrap;
+
+  &.focusable:active,
+  &.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    white-space: inherit;
+    width: auto;
+  }
 }
 
 // Ellipsis
