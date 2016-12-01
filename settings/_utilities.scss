@@ -58,14 +58,12 @@
 // --------------------------------
 
 @mixin cf {
-  zoom: 1;
   &:before,
   &:after {
-    content: "\0020";
-    display: block;
-    height: 0;
-    overflow: hidden;
+    content: " ";
+    display: table;
   }
+
   &:after {
     clear: both;
   }
