@@ -10,11 +10,11 @@ input,
 textarea,
 select {
   border-radius: 0;
-  border: rem(1px) solid #eee;
-  padding: rem(5px 10px);
+  border: .1rem solid #eee;
+  padding: .5rem 1rem;
   margin: 0;
   width: 100%;
-  font-size: rem(13px);
+  font-size: 1.3rem;
 }
 
 // Unique styles that just apply to input/textarea/label
@@ -28,8 +28,8 @@ label {
 // This only matters for apple devices (height)
 select {
   background: #fff;
-  height: rem(30px);
-  padding: rem(5px 10px);
+  height: 3rem;
+  padding: .5rem 1rem;
 }
 
 // Reset Search Input

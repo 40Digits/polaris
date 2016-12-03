@@ -3,9 +3,9 @@
 // ================================
 $config: (
   // Gutters
-  gutter-base:   rem(map-get($defaultConfig, gutter-base)),
-  gutter-medium: rem(map-get($defaultConfig, gutter-medium)),
-  gutter-large:  rem(map-get($defaultConfig, gutter-large)),
+  gutter-base:   map-get($defaultConfig, gutter-base),
+  gutter-medium: map-get($defaultConfig, gutter-medium),
+  gutter-large:  map-get($defaultConfig, gutter-large),
 
   // Rows Max-Width
   max-width-default: rem(map-deep-get($defaultConfig, mq, mq-xlarge)),
