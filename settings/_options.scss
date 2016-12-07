@@ -16,6 +16,7 @@ $config: (
   max-width-xxlarge:  rem(map-deep-get($defaultConfig, mq, mq-xlarge)),
 
   // Media Queries - min-width
+  mq-tiny:     "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-tiny))})",
   mq-mini:     "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-mini))})",
   mq-small:    "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-small))})",
   mq-medium:   "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-medium))})",
