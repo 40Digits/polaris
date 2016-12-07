@@ -11,20 +11,16 @@
   "author": "40Digits",
   "contributors": [
     {
-      "name": "Brandon Cash",
-      "email": "brandon@40digits.com"
+      "name": "CK Hicks"
     },
     {
-      "name": "Chad Watson",
-      "email": "chad@40digits.com"
+      "name": "Seth MacPherson"
     },
     {
-      "name": "Preston Richey",
-      "email": "preston@40digits.com"
+      "name": "Savannah Russell"
     },
     {
-      "name": "CK Hicks",
-      "email": "ck@40digits.com"
+      "name": "Brandon Cash"
     }
   ],
   "license": "ISC",
@@ -35,7 +31,6 @@
     "glob": "^7.0.5",
     "node-notifier": "^4.6.0",
     "node-sass": "^3.8.0",
-    "node-sass-json-importer": "^2.1.1",
     "postcss": "^5.0.21"
   }
 }
