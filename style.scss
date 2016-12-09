@@ -4,7 +4,7 @@ $print-media: false;
 // ================================
 // Your App Settings
 // ================================
-@import "app/wordpress-theme";
+@import "app/vendor/wordpress-theme";
 @import "app/config";
 
 //---------------------------------
@@ -28,12 +28,10 @@ $print-media: false;
 @import "core/rem";
 @import "core/grid";
 @import "core/media-queries";
-@import "settings/js-breakpoints";
+@import "core/js-breakpoints";
 @import "core/getcolor";
 @import "core/modernizr";
 @import "core/placeholder";
-@import "core/symbols";
-@import "core/sprites";
 @import "core/utilities";
 @import "core/z-index";
 
@@ -41,7 +39,6 @@ $print-media: false;
 // settings Styles
 // --------------------------------
 @import "core/defaults";
-@import "core/forms";
 
 // --------------------------------
 // Custom App Styles

@@ -12,16 +12,19 @@
 // Application Configurations
 //---------------------------------
 
-// Application configurations merge with the default configurations
-// located at: /app/core/_options.scss
+// The settings in $appConfig below merge with $defaultConfig
+// in: `/app/core/_options.scss` and can be accessed through
+// the resulting $config map. $appConfig has priority with the merge and will
+// overwrite properties in the $defaultConfig map.
 
 $appConfig: (
   colors: (
     black: (
-      base: #000
+      base: #000,
     ),
     white: (
-      base: #fff
-    )
+      base: #fff,
+    ),
+    gray: #777,
   ),
 );
