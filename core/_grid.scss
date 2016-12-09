@@ -19,7 +19,7 @@ $gutter-defaults: map-get($config, grid-gutters); // REM value
   }
 }
 
-@mixin col($span: 1, $columns: $column-defaults, $type: false, $gutter: $global-grid-gutters) {
+@mixin col($span: 1, $columns: $column-defaults, $type: false, $gutter: $gutter-defaults) {
   flex: 0 0 #{(percentage($span / $columns))};
   width: initial;
   min-width: initial;
