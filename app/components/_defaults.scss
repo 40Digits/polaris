@@ -16,15 +16,10 @@
 // General
 // --------------------------------
 
-html {
-  font-size: map-get($defaultConfig, 'html-font-size');
-}
-
 body {
   background: getcolor(white, base);
   color: getcolor(black);
   font-family: $font-default;
-  font-size: map-get($defaultConfig, 'body-font-size');
   @include font-smoothing;
 }
 

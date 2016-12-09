@@ -4,4 +4,5 @@ $print-media: true;
 // Default Styles
 // ================================
 
-@import "style.scss";
+@import "style";
+@import "app/views/print";

@@ -1,0 +1,59 @@
+// ================================
+// Auto Generate Mediaquery Sizes
+// ================================
+
+// This autogenerates a map based upon the mq map in the $config
+// by default it returns the following auto generated items:
+
+// Rows Max-Width
+// max-width-mini:   rem(map-deep-get($defaultConfig, mq, mq-tiny))
+// max-width-small:   rem(map-deep-get($defaultConfig, mq, mq-mini))
+// max-width-medium:  rem(map-deep-get($defaultConfig, mq, mq-small))
+// max-width-large:   rem(map-deep-get($defaultConfig, mq, mq-medium))
+// max-width-xlarge:  rem(map-deep-get($defaultConfig, mq, mq-large))
+// max-width-xxlarge:  rem(map-deep-get($defaultConfig, mq, mq-xlarge))
+
+// Media Queries - min-width
+// mq-tiny:     "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-tiny))})"
+// mq-mini:     "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-mini))})"
+// mq-small:    "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-small))})"
+// mq-medium:   "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-medium))})"
+// mq-large:    "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-large))})"
+// mq-xlarge:   "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xlarge))})"
+// mq-xxlarge:  "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xxlarge))})"
+// mq-xxxlarge: "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xxxlarge))})"
+
+// Media Queries - max-width
+// mq-max-tiny:    "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-mini) - 1px)})"
+// mq-max-mini:    "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-small) - 1px)})"
+// mq-max-small:   "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-medium) - 1px)})"
+// mq-max-medium:  "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-large) - 1px)})"
+// mq-max-large:   "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xlarge) - 1px)})"
+// mq-max-xlarge:  "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xxlarge) - 1px)})"
+// mq-max-xxlarge: "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xxxlarge) - 1px)})"
+
+@function generate-mq-sizes() {
+  $sizes: ();
+  $mediaqueries: map-get($config, mq);
+  $i: 1;
+  $previous: ();
+
+  @each $full-name, $value in $mediaqueries {
+    $name: str-slice($full-name, 4);
+
+    @if $i != 1 {
+      $sizes: map-set($sizes, "mq-max-#{map-get($previous, name)}", "(max-width: #{em($value - 1px)})");
+    }
+
+    @if $i != length($mediaqueries) and $i != 1 {
+      $sizes: map-set($sizes, "max-width-#{map-get($previous, name)}", nth(em($value), 1));
+    }
+
+    $sizes: map-set($sizes, $full-name, "(min-width: #{em($value)})");
+
+    $i: $i + 1;
+    $previous: (name: $name, value: $value);
+  }
+
+  @return $sizes;
+}

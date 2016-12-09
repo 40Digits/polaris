@@ -4,44 +4,40 @@ $print-media: false;
 // ================================
 // Your App Settings
 // ================================
-@import "app/wordpress-theme";
 @import "app/config";
 
 //---------------------------------
 // Setup
 //---------------------------------
-@import "settings/map-deep-get";
-@import "settings/units";
-@import "settings/options";
+@import "core/map-set";
+@import "core/map-deep-merge";
+@import "core/map-deep-get";
+@import "core/units";
+@import "core/options-utils-auto-generate-mq";
+@import "core/options";
 
 //---------------------------------
 // Reset Stylesheet
 //---------------------------------
-@import "settings/reset";
+@import "core/reset";
 
 // --------------------------------
 // Helpers
 // --------------------------------
-@import "settings/rem";
-@import "settings/grid";
-@import "settings/media-queries";
-@import "settings/js-breakpoints";
-@import "settings/getcolor";
-@import "settings/fonts";
-@import "settings/keyframes";
-@import "settings/modernizr";
-@import "settings/placeholder";
-@import "settings/print";
-@import "settings/symbols";
-@import "settings/sprites";
-@import "settings/utilities";
-@import "settings/z-index";
+@import "core/rem";
+@import "core/grid";
+@import "core/media-queries";
+@import "core/js-breakpoints";
+@import "core/getcolor";
+@import "core/modernizr";
+@import "core/placeholder";
+@import "core/utilities";
+@import "core/z-index";
 
 // --------------------------------
 // settings Styles
 // --------------------------------
-@import "settings/defaults";
-@import "settings/forms";
+@import "core/defaults";
 
 // --------------------------------
 // Custom App Styles
