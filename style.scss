@@ -4,13 +4,17 @@ $print-media: false;
 // ================================
 // Your App Settings
 // ================================
+@import "app/wordpress-theme";
 @import "app/config";
 
 //---------------------------------
 // Setup
 //---------------------------------
+@import "core/map-set";
+@import "core/map-deep-merge";
 @import "core/map-deep-get";
 @import "core/units";
+@import "core/options-utils-auto-generate-mq";
 @import "core/options";
 
 //---------------------------------
@@ -24,11 +28,10 @@ $print-media: false;
 @import "core/rem";
 @import "core/grid";
 @import "core/media-queries";
-// @import "settings/js-breakpoints";
+@import "settings/js-breakpoints";
 @import "core/getcolor";
 @import "core/modernizr";
 @import "core/placeholder";
-@import "core/print";
 @import "core/symbols";
 @import "core/sprites";
 @import "core/utilities";

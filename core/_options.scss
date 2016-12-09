@@ -1,40 +1,86 @@
 // ================================
 // Variables
 // ================================
-$config: (
-  // Gutters
-  gutter-base:   rem(map-get($defaultConfig, gutter-base)),
-  gutter-medium: rem(map-get($defaultConfig, gutter-medium)),
-  gutter-large:  rem(map-get($defaultConfig, gutter-large)),
 
-  // Rows Max-Width
-  max-width-default: rem(map-deep-get($defaultConfig, mq, mq-xlarge)),
-  max-width-small:   rem(map-deep-get($defaultConfig, mq, mq-mini)),
-  max-width-medium:  rem(map-deep-get($defaultConfig, mq, mq-small)),
-  max-width-large:   rem(map-deep-get($defaultConfig, mq, mq-medium)),
-  max-width-xlarge:  rem(map-deep-get($defaultConfig, mq, mq-large)),
-  max-width-xxlarge:  rem(map-deep-get($defaultConfig, mq, mq-xlarge)),
+$defaultConfig: (
+  // Default Font Family
+  default-font: sans-serif,
 
-  // Media Queries - min-width
-  mq-mini:     "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-mini))})",
-  mq-small:    "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-small))})",
-  mq-medium:   "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-medium))})",
-  mq-large:    "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-large))})",
-  mq-xlarge:   "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xlarge))})",
-  mq-xxlarge:  "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xxlarge))})",
-  mq-xxxlarge: "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xxxlarge))})",
+  // Default Font Sizes
+  html-font-size: 62.5%,
+  body-font-size: 16px,
+  em-base: 16,
+  base-font-size: 10px,
+  rem-with-px-fallback: false,
 
-  // Media Queries - max-width
-  mq-max-tiny:    "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-mini) - 1px)})",
-  mq-max-mini:    "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-small) - 1px)})",
-  mq-max-small:   "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-medium) - 1px)})",
-  mq-max-medium:  "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-large) - 1px)})",
-  mq-max-large:   "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xlarge) - 1px)})",
-  mq-max-xlarge:  "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xxlarge) - 1px)})",
-  mq-max-xxlarge: "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xxxlarge) - 1px)})",
+  // Default Colors
+  colors: (),
 
-  mq-print: "print"
+  // Default Grid System
+  grid-columns: 12,
+  grid-gutters: 1.5,
+
+  // Default Gutter Sizes
+  gutter-base:   1.5rem,
+  gutter-medium: 3rem,
+  gutter-large:  4.5rem,
+
+  // Default Media Queries
+  mq: (
+    mq-tiny:     0px,
+    mq-mini:     480px,
+    mq-small:    600px,
+    mq-medium:   768px,
+    mq-large:    1020px,
+    mq-xlarge:   1230px,
+    mq-xxlarge:  1320px,
+    mq-xxxlarge: 1640px
+  ),
+
+  mq-print: 'print',
+
+  mq-max-width-default: 'mq-xlarge',
+
+  // Default z-index Layers
+  z-layers: (
+    pit:      -1,
+    default:  1,
+    footer:   5,
+    header:   10,
+    nav:      20,
+    announce: 30,
+    modal:    40,
+    overlay:  50
+  )
 );
 
-// Merge these settings with the JSON & app data
-$config: map-merge($defaultConfig, $config);
+// Merge application config with priority over default config
+$config: map-deep-merge($appConfig, $defaultConfig);
+$config: map-deep-merge(automated-media-query-sizes(), $config);
+
+// Rows Max-Width
+// max-width-default: rem(map-deep-get($defaultConfig, mq, mq-xlarge)),
+// max-width-small:   rem(map-deep-get($defaultConfig, mq, mq-mini)),
+// max-width-medium:  rem(map-deep-get($defaultConfig, mq, mq-small)),
+// max-width-large:   rem(map-deep-get($defaultConfig, mq, mq-medium)),
+// max-width-xlarge:  rem(map-deep-get($defaultConfig, mq, mq-large)),
+// max-width-xxlarge:  rem(map-deep-get($defaultConfig, mq, mq-xlarge)),
+
+// Media Queries - min-width
+// mq-tiny:     "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-tiny))})",
+// mq-mini:     "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-mini))})",
+// mq-small:    "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-small))})",
+// mq-medium:   "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-medium))})",
+// mq-large:    "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-large))})",
+// mq-xlarge:   "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xlarge))})",
+// mq-xxlarge:  "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xxlarge))})",
+// mq-xxxlarge: "(min-width: #{em(map-deep-get($defaultConfig, mq, mq-xxxlarge))})",
+
+// Media Queries - max-width
+// mq-max-tiny:    "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-mini) - 1px)})",
+// mq-max-mini:    "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-small) - 1px)})",
+// mq-max-small:   "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-medium) - 1px)})",
+// mq-max-medium:  "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-large) - 1px)})",
+// mq-max-large:   "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xlarge) - 1px)})",
+// mq-max-xlarge:  "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xxlarge) - 1px)})",
+// mq-max-xxlarge: "(max-width: #{em(map-deep-get($defaultConfig, mq, mq-xxxlarge) - 1px)})",

@@ -1,0 +1,27 @@
+// Auto Generate Media Queries
+@function automated-media-query-sizes() {
+  $sizes: ();
+
+  $mediaqueries: map-get($config, mq);
+
+  $i: 1;
+
+  @each $full-name, $value in $mediaqueries {
+    $name: str-slice($full-name, 3);
+    $action: null;
+
+    @if $i != 1 {
+      $action: map-set($sizes, "max-width-#{$name}", em($value));
+    }
+
+    @if $i != length($mediaqueries) {
+      $action: map-set($sizes, "mq-max-#{$name}", "(max-width: #{em($value - 1px)})");
+    }
+
+    $action: map-set($sizes, $full-name, "(min-width: #{em($value)})");
+
+    $i: $i + 1;
+  }
+
+  @return $sizes;
+}

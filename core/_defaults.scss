@@ -3,67 +3,13 @@
 // ================================
 
 // --------------------------------
-// Pseudo
-// --------------------------------
-
-::selection {
-  background: getcolor(gray, base);
-  color: getcolor(white, base);
-  text-shadow: none;
-}
-
-// --------------------------------
-// General
+// Base Font Sizes (For Media Queries)
 // --------------------------------
 
 html {
-  font-size: map-get($defaultConfig, 'html-font-size');
+  font-size: map-get($config, 'html-font-size');
 }
 
 body {
-  background: getcolor(white, base);
-  color: getcolor(black);
-  font-family: $font-default;
-  font-size: map-get($defaultConfig, 'body-font-size');
-  @include font-smoothing;
-}
-
-a {
-  color: blue;
-  text-decoration: none;
-  &:hover,
-  &:focus {
-    color: red;
-  }
-}
-
-
-// --------------------------------
-// Headlines
-// --------------------------------
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  line-height: 1;
-}
-
-
-// --------------------------------
-// Text Components
-// --------------------------------
-
-p,
-li,
-dt,
-dd {
-  font-weight: normal;
-  font-style: normal;
-}
-
-li {
-  line-height: 1;
+  font-size: map-get($config, 'body-font-size');
 }

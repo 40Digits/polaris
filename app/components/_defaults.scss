@@ -1,0 +1,64 @@
+// ================================
+// Base & Typography Defaults
+// ================================
+
+// --------------------------------
+// Pseudo
+// --------------------------------
+
+::selection {
+  background: getcolor(gray, base);
+  color: getcolor(white, base);
+  text-shadow: none;
+}
+
+// --------------------------------
+// General
+// --------------------------------
+
+body {
+  background: getcolor(white, base);
+  color: getcolor(black);
+  font-family: $font-default;
+  @include font-smoothing;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+  &:hover,
+  &:focus {
+    color: red;
+  }
+}
+
+
+// --------------------------------
+// Headlines
+// --------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1;
+}
+
+
+// --------------------------------
+// Text Components
+// --------------------------------
+
+p,
+li,
+dt,
+dd {
+  font-weight: normal;
+  font-style: normal;
+}
+
+li {
+  line-height: 1;
+}
