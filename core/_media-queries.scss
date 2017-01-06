@@ -5,7 +5,6 @@
 // Do not edit unless you know what you are doing.
 
 @mixin mq($point, $reverse: false) {
-
   // if print media is enabled
   // we are looping through all of the media query mixins
   // if the mq equates to "print" then we wrap the content in print
@@ -29,31 +28,41 @@
     // we are utilizing base 16px for all em units
     @if type-of($point) == "number" {
       @if unitless($point) or unit($point) == "em" or unit($point) == "rem" or unit($point) == "%" {
-        @warn "Please use pixel values.";
+        @error "Mixin mq requires pixel values, received #{$point}. Please replace with a pixel value.";
 
       // if max media query .. ex: @include mq(600px, max)
       // we take the 600px and subtract 1px for the max-width to work with mobile-first
       } @else if $reverse == "max" {
-        @media screen and (max-width: em($point - 1px)) {
+        @media (max-width: em($point - 1px)) {
           @content;
         }
 
       // if min media query ... ex: @include mq(600px)
       // we just take the unit passed and generate the min-width query
       } @else {
-        @media screen and (min-width: em($point)) {
+        @media (min-width: em($point)) {
           @content;
         }
       }
 
     // otherwise if it's not a number
-    // we are going to check if the value matches our media query map in "core/_options.scss"
+    // we are going to check if the value matches our media query map
+    // stored in $config. The defaults are stored in "core/_options.scss",
+    // any overrides are found in "app/_config.scss"
     } @else if map-deep-get($config, mq, "mq-#{$point}") {
-      @media #{map-deep-get($config, mq, "mq-#{$point}")} {
-        @content;
+
+      // if this should be a limited style
+      @if map-deep-get($config, mq, "mq-max-#{$reverse}") {
+        @media #{inspect(map-deep-get($config, mq, "mq-#{$point}"))} and #{inspect(map-deep-get($config, mq, "mq-max-#{$reverse}"))} {
+          @content;
+        }
+      } @else {
+        @media #{inspect(map-deep-get($config, mq, "mq-#{$point}"))} {
+          @content;
+        }
       }
     } @else {
-      @warn "Couldn't find a breakpoint named `#{$point}`.";
+      @error "Mixin mq couldn't find a breakpoint named `#{$point}`.";
     }
   }
 }
