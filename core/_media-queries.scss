@@ -2,67 +2,97 @@
 // Media Queries
 // ================================
 
-// Do not edit unless you know what you are doing.
+// --------------------------------
+// Helper Functions
+// --------------------------------
 
-@mixin mq($point, $reverse: false) {
-  // if print media is enabled
-  // we are looping through all of the media query mixins
+// Determine if current value is a valid breakpoint value
+// @param - $value - The value to test
+// @return [boolean] - True if value is valid, false if not
+@function is-mq-point($value) {
+  @if type-of($value) == 'number' {
+    @if unit($value) == 'px' {
+      @return true;
+    } @else {
+      @error "Mixin mq requires pixel values, received #{$value}. Please replace with a pixel value.";
+    }
+  }
+
+  @if map-deep-get($config, mq, "mq-#{$value}") {
+    @return true;
+  }
+
+  @return false;
+}
+
+// Parse and create breakpoint
+// @param - $breakpoint - The breakpoint to parse
+// @param - $limit - Sets which direction the mediaquery should limit to.
+// @return [string] - Mediaquery formatted string. EG: (min-width: 60em);
+@function mq-point-value($breakpoint, $limit: min, $type: horiziontal) {
+  @if type-of($breakpoint) == 'number' {
+    $direction: 'width';
+
+    @if $type == 'vertical' {
+      $direction: 'height';
+    }
+
+    $query: '#{$limit}-#{$direction}';
+
+    @return "(#{$query}: #{em($breakpoint)})";
+  }
+
+  $mediaquery: "mq-#{$breakpoint}";
+
+  @if $limit == 'max' {
+    $mediaquery: "mq-max-#{$breakpoint}";
+  }
+
+  @if map-get($config, $mediaquery) {
+    @return map-get($config, $mediaquery);
+  }
+
+  @error "Mixin mq couldn't parse '#{$breakpoint}' as a breakpoint value.";
+}
+
+// --------------------------------
+// Main MQ Mixin
+// --------------------------------
+
+// Main Media Query Mixin
+// @param $min - The min breakpoint value
+// @param $max - The max breakpoint value
+// @param $type - The type of mediaquery (horiziontal, vertical, print)
+// @return - writes the content wrapped in the generated mediaquery
+@mixin mq($min: false, $max: false, $type: horiziontal) {
+  // if print media is enabled, looping through all of the media query mixins
   // if the mq equates to "print" then we wrap the content in print
   // if anything else, we just stack the content inside of the media query mixin
   // the idea is that all of the mobile first entries get overwritten, however a print media query will take precedence
   @if $print-media {
-
-    @if $point == 'print' {
+    @if $type == 'print' {
       @media print {
         @content;
       }
     } @else {
       @content;
     }
-
   } @else {
-
-    // check if value inside of mixin is a number
-    // if number then we use that value in the breakpoint
-    // the number needs to be a pixel value as we are going to convert it to an em
-    // we are utilizing base 16px for all em units
-    @if type-of($point) == "number" {
-      @if unitless($point) or unit($point) == "em" or unit($point) == "rem" or unit($point) == "%" {
-        @error "Mixin mq requires pixel values, received #{$point}. Please replace with a pixel value.";
-
-      // if max media query .. ex: @include mq(600px, max)
-      // we take the 600px and subtract 1px for the max-width to work with mobile-first
-      } @else if $reverse == "max" {
-        @media (max-width: em($point - 1px)) {
-          @content;
-        }
-
-      // if min media query ... ex: @include mq(600px)
-      // we just take the unit passed and generate the min-width query
-      } @else {
-        @media (min-width: em($point)) {
-          @content;
-        }
+    @if is-mq-point($min) and is-mq-point($max) {
+      @media #{mq-point-value($min, min, $type)} and #{mq-point-value($max, max, $type)} {
+        @content;
       }
-
-    // otherwise if it's not a number
-    // we are going to check if the value matches our media query map
-    // stored in $config. The defaults are stored in "core/_options.scss",
-    // any overrides are found in "app/_config.scss"
-    } @else if map-deep-get($config, mq, "mq-#{$point}") {
-
-      // if this should be a limited style
-      @if map-deep-get($config, mq, "mq-max-#{$reverse}") {
-        @media #{inspect(map-deep-get($config, mq, "mq-#{$point}"))} and #{inspect(map-deep-get($config, mq, "mq-max-#{$reverse}"))} {
-          @content;
-        }
-      } @else {
-        @media #{inspect(map-deep-get($config, mq, "mq-#{$point}"))} {
-          @content;
-        }
+    } @else if is-mq-point($min) {
+      @media #{mq-point-value($min, min, $type)} {
+        @content;
+      }
+    } @else if is-mq-point($max) {
+      @media #{mq-point-value($max, max, $type)} {
+        @content;
       }
     } @else {
-      @error "Mixin mq couldn't find a breakpoint named `#{$point}`.";
+      @warn 'mq mixin was unable to create mediaquery from the specified parameters';
+      @content;
     }
   }
 }
