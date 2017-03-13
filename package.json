@@ -4,9 +4,9 @@
   "description": "A Sass starter kit.",
   "main": "_build.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build",
     "build": "node _build.js",
-    "watch:sass": "chokidar \"./_src/sass/**/*.scss\" -c \"npm run build\""
+    "watch:sass": "chokidar \"./**/*.scss\" -c \"npm run build\""
   },
   "author": "40Digits",
   "contributors": [
