@@ -1,0 +1,29 @@
+//
+// Determines if value is a percent
+// https://css-tricks.com/snippets/sass/advanced-type-checking/
+//
+@function is-percentage($value) {
+  @return is-number($value) and unit($value) == '%';
+}
+
+//
+// Returns a color with an optional tone from the map
+//
+// @param {string}  $color_name     The base name of the color
+// @param {tone}    ($tone|'base')  The tone of that color or 'base'
+//
+// @return {string} The matching color's value from the map
+//
+ @function getcolor($color-name, $tone: base, $alpha: 1) {
+  @if is-percentage($alpha) {
+    $alpha: $alpha / 100%;
+  }
+
+  $color: map-deep-get($config, colors, $color-name, $tone);
+
+  @if (type-of($color) == color) {
+    @return rgba($color, $alpha);
+  } @else {
+    @error 'Unable to find "#{$color-name} (#{$tone})" in colors map (located: app/_config.scss -> $defaultConfig)';
+  }
+}

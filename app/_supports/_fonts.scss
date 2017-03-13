@@ -1,0 +1,25 @@
+// ================================
+// Fonts
+// ================================
+
+// --------------------------------
+// @font-face & @import
+// --------------------------------
+
+// @font-face {
+//  font-family: 'ClarendonBT-Roman';
+//  src:url('assets/fonts/font-folder-name/font-file.eot');
+//  src:url('assets/fonts/font-folder-name/font-file.eot?#iefix') format('embedded-opentype'),
+//    url('assets/fonts/font-folder-name/font-file.woff') format('woff'),
+//    url('assets/fonts/font-folder-name/font-file.ttf') format('truetype');
+//  font-weight: 400;
+// }
+
+
+// --------------------------------
+// Font Variables
+// --------------------------------
+
+// Variables best utilized for font services with family grouping.
+$font-default: sans-serif;
+$font-name-one: 'Font Name One', sans-serif;

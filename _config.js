@@ -10,7 +10,7 @@ exports.sass = {
 // Autoprefixer options
 // https://github.com/postcss/autoprefixer#options
 exports.autoprefixer = {
-  browsers: '> 5%',
+  browsers: '> 5%, last 2 version, IE 10',
 };
 
 // Color options

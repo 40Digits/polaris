@@ -1,0 +1,56 @@
+// ================================
+// Javascript Breakpoints
+// ================================
+
+// Do no edit unless you know what you are doing.
+
+@function build-js-breakpoints() {
+  $breakpoint_map: ();
+  @each $name, $value in map-get($config, mq) {
+    $breakpoint_map: map-merge($breakpoint_map, ($name: str-slice($name, 4)));
+  }
+  @return $breakpoint_map;
+}
+$public_breakpoints: build-js-breakpoints();
+
+// --------------------------------
+// Setup mixins
+// --------------------------------
+
+// Tells SassQwatch the names of our breakpoints
+@mixin expose-breakpoint-names($breakpoints) {
+  @each $public, $mq in $breakpoints {
+    @include mq($mq) {
+      font-family: $public;
+    }
+  }
+}
+
+// Tells SassQwatch the order of our breakpoints
+@mixin expose-breakpoint-order($breakpoints) {
+  $length: length($breakpoints);
+  $list: '';
+  $i: 1;
+
+  @each $breakpoint, $query in $breakpoints {
+    $list: $list + $breakpoint;
+
+    @if $i != $length {
+      $list: $list + ', ';
+    }
+
+    $i: $i + 1;
+  }
+  font-family: $list;
+}
+
+// --------------------------------
+// Expose the breakpoints
+// --------------------------------
+head {
+  @include expose-breakpoint-names($public_breakpoints);
+}
+
+title {
+  @include expose-breakpoint-order($public_breakpoints);
+}

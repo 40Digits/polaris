@@ -1,0 +1,41 @@
+//---------------------------------
+// Grid: cleaned up and SASS-ified
+// source: https://github.com/daneden/Toast/
+//---------------------------------
+$column-defaults: map-get($config, grid-columns); // total number
+$gutter-defaults: map-get($config, grid-gutters); // REM value
+
+@mixin row($reverse: false, $justify: false) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+  @if $reverse {
+    flex-direction: row-reverse;
+  }
+
+  @if $justify {
+    justify-content: $justify;
+  }
+}
+
+@mixin col($span: 1, $columns: $column-defaults, $type: false, $gutter: $gutter-defaults) {
+  flex: 0 0 #{(percentage($span / $columns))};
+  width: initial;
+  min-width: initial;
+  max-width: #{(percentage($span / $columns))};
+  padding-right: #{$gutter}rem;
+  padding-left: #{$gutter}rem;
+
+  @if $type == grow {
+    flex-grow: 1;
+  }
+
+  @if $type == first {
+    order: -1;
+  }
+
+  @if $type == last {
+    order: 1;
+  }
+}

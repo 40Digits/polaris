@@ -66,7 +66,7 @@ function getError(error) {
   return renderedMessage;
 }
 
-// Looks for each SCSS or Sass file
+// Looks for each SCSS or SASS file
 glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
   if (err) {
     console.log(getError(err));

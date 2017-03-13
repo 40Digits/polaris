@@ -1,0 +1,98 @@
+// ================================
+// Media Queries
+// ================================
+
+// --------------------------------
+// Helper Functions
+// --------------------------------
+
+// Determine if current value is a valid breakpoint value
+// @param - $value - The value to test
+// @return [boolean] - True if value is valid, false if not
+@function is-mq-point($value) {
+  @if type-of($value) == 'number' {
+    @if unit($value) == 'px' {
+      @return true;
+    } @else {
+      @error "Mixin mq requires pixel values, received #{$value}. Please replace with a pixel value.";
+    }
+  }
+
+  @if map-deep-get($config, mq, "mq-#{$value}") {
+    @return true;
+  }
+
+  @return false;
+}
+
+// Parse and create breakpoint
+// @param - $breakpoint - The breakpoint to parse
+// @param - $limit - Sets which direction the mediaquery should limit to.
+// @return [string] - Mediaquery formatted string. EG: (min-width: 60em);
+@function mq-point-value($breakpoint, $limit: min, $type: horiziontal) {
+  @if type-of($breakpoint) == 'number' {
+    $direction: 'width';
+
+    @if $type == 'vertical' {
+      $direction: 'height';
+    }
+
+    $query: '#{$limit}-#{$direction}';
+
+    @return "(#{$query}: #{em($breakpoint)})";
+  }
+
+  $mediaquery: "mq-#{$breakpoint}";
+
+  @if $limit == 'max' {
+    $mediaquery: "mq-max-#{$breakpoint}";
+  }
+
+  @if map-get($config, $mediaquery) {
+    @return map-get($config, $mediaquery);
+  }
+
+  @error "Mixin mq couldn't parse '#{$breakpoint}' as a breakpoint value.";
+}
+
+// --------------------------------
+// Main MQ Mixin
+// --------------------------------
+
+// Main Media Query Mixin
+// @param $min - The min breakpoint value
+// @param $max - The max breakpoint value
+// @param $type - The type of mediaquery (horiziontal, vertical, print)
+// @return - writes the content wrapped in the generated mediaquery
+@mixin mq($min: false, $max: false, $type: horiziontal) {
+  // if print media is enabled, looping through all of the media query mixins
+  // if the mq equates to "print" then we wrap the content in print
+  // if anything else, we just stack the content inside of the media query mixin
+  // the idea is that all of the mobile first entries get overwritten, however a print media query will take precedence
+  @if $print-media {
+    @if $type == 'print' {
+      @media print {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  } @else {
+    @if is-mq-point($min) and is-mq-point($max) {
+      @media #{mq-point-value($min, min, $type)} and #{mq-point-value($max, max, $type)} {
+        @content;
+      }
+    } @else if is-mq-point($min) {
+      @media #{mq-point-value($min, min, $type)} {
+        @content;
+      }
+    } @else if is-mq-point($max) {
+      @media #{mq-point-value($max, max, $type)} {
+        @content;
+      }
+    } @else {
+      @warn 'mq mixin was unable to create mediaquery from the specified parameters';
+      @content;
+    }
+  }
+}

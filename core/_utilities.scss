@@ -1,0 +1,99 @@
+// ================================
+// Utilities
+// ================================
+
+// Font-smoothing for OSX
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Remove font-smoothing if not necessary
+@mixin no-font-smoothing {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+}
+
+// Visually hide elements while at the same time make them accessible on screen readers
+@mixin visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+
+  &.focusable:active,
+  &.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    white-space: inherit;
+    width: auto;
+  }
+}
+
+// Ellipsis
+@mixin ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// Remove all list styling
+// ex: @include naked-list
+@mixin naked-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// Remove all button styling and reset it to default
+// ex: @include naked-button
+@mixin naked-button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+
+// --------------------------------
+// Clearfix
+// --------------------------------
+
+@mixin cf {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+
+// --------------------------------
+// Class Helpers
+// --------------------------------
+
+// Clear class helpers
+.cf,
+.clear,
+.clearfix {
+  @include cf;
+}
+
+// Visually hide elements while at the same time make them accessible on screen readers
+.visually-hidden {
+  @include visually-hidden;
+}

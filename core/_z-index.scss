@@ -1,0 +1,16 @@
+// ================================
+// Z-Index Management
+// ================================
+
+// http://www.sitepoint.com/better-solution-managing-z-index-sass/
+// http://viget.com/extend/sass-maps-and-z-indexes
+// Usage: z-index: z('overlay');
+// See /settings/_options.scss for values
+
+@function z($layer) {
+  @if map-deep-get($config, z-layers, $layer) {
+    @return map-deep-get($config, z-layers, $layer);
+  }
+
+  @error "No layer found for `#{$layer}` in $z-layers map. Check inside app/_config.scss";
+}

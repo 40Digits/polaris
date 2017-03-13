@@ -1,0 +1,17 @@
+// --------------------------------
+// Wysiwyg Styles
+// --------------------------------
+
+@mixin wysiwyg {
+
+  // your styles here
+
+}
+
+// --------------------------------
+// Extend WYSIWYG Styles
+// --------------------------------
+
+.wysiwyg {
+  @include wysiwyg;
+}

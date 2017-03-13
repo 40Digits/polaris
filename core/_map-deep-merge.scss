@@ -1,0 +1,24 @@
+// map-deep-merge function for Sass.
+// Version 1.2 - 2016.05.14.
+// Author: Zsolt Pentz - github.com/pentzzsolt
+// License: CC0 1.0 Universal (Public Domain)
+
+@function map-deep-merge($parent-map, $child-map) {
+  $result: $parent-map;
+  @each $key, $value in $child-map {
+    // If parent map does not have the child map's key, or
+    // If their type don't match, or if they are not both maps,
+    @if (not map-has-key($result, $key)) or
+      (type-of(map-get($result, $key)) != type-of($value)) or
+      (not (type-of(map-get($result, $key)) == map and
+      type-of($value) == map)) {
+        // Add key to the parent map.
+        $result: map-merge($result, ($key: $value));
+    } @else {
+      // If they are both maps, we need another non-destructive merger.
+      // Recursive, yay!
+      $result: map-merge($result, ($key: map-deep-merge(map-get($result, $key), $value)));
+    }
+  }
+  @return $result;
+}

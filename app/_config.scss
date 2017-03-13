@@ -1,0 +1,43 @@
+//=================================
+// Custom App Config
+//=================================
+
+//---------------------------------
+// WordPress Theme Info
+//---------------------------------
+/*!
+ * Theme Name: Your Theme Name
+ * Theme URI: https://themewebsite.com
+ * Author: Your Name
+ * Author URI: https://yourwebsite.com
+ * Description:
+ * Version: 1.0
+ * Text Domain: yourthemefoldername
+ */
+
+//---------------------------------
+// App Specific Support Files
+//---------------------------------
+
+@import "_supports/all";
+
+//---------------------------------
+// Application Configurations
+//---------------------------------
+
+// The settings in $appConfig below merge with $defaultConfig
+// in: `/app/core/_options.scss` and can be accessed through
+// the resulting $config map. $appConfig has priority with the merge and will
+// overwrite properties in the $defaultConfig map.
+
+$appConfig: (
+  colors: (
+    black: (
+      base: #000,
+    ),
+    white: (
+      base: #fff,
+    ),
+    gray: #777,
+  ),
+);

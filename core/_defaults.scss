@@ -1,0 +1,15 @@
+// ================================
+// Base & Typography Defaults
+// ================================
+
+// --------------------------------
+// Base Font Sizes (For Media Queries)
+// --------------------------------
+
+html {
+  font-size: map-get($config, 'html-font-size');
+}
+
+body {
+  font-size: map-get($config, 'body-font-size');
+}

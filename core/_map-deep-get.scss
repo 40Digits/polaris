@@ -1,0 +1,19 @@
+//=================================
+// Function for deep map searches
+//=================================
+
+@function map-deep-get($map, $base, $keys...) {
+  @each $key in $keys {
+    @if type-of($map) == map and type-of($map) != null {
+      @if map-has-key($map, $key) {
+        $map: map-get($map, $key);
+      } @else {
+        $map: map-get(map-get($map, $base), $key);
+      }
+    } @else {
+      // @warn "End of map iterator - map key #{$key} does not exist in #{$base}";
+      $map: $map;
+    }
+  }
+  @return $map;
+}

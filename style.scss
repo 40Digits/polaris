@@ -1,58 +1,45 @@
+// Global flag for this Stylesheet
+$print-media: false;
+
 // ================================
-// Default WP Meta
+// Your App Settings
 // ================================
-@import "settings/wp-meta";
+@import "app/config";
 
-// --------------------------------
-// Reset
-// --------------------------------
+//---------------------------------
+// Setup
+//---------------------------------
+@import "core/map-set";
+@import "core/map-deep-merge";
+@import "core/map-deep-get";
+@import "core/units";
+@import "core/options-utils-auto-generate-mq";
+@import "core/options";
 
-@import "base/reset";
-
-// --------------------------------
-// Settings
-// --------------------------------
-
-@import "settings/all";
+//---------------------------------
+// Reset Stylesheet
+//---------------------------------
+@import "core/reset";
 
 // --------------------------------
 // Helpers
 // --------------------------------
-
-@import "utils/all";
-
-// --------------------------------
-// Base
-// --------------------------------
-
-@import "base/all";
-
-// --------------------------------
-// Layout
-// --------------------------------
-
-@import "layout/all";
+@import "core/rem";
+@import "core/grid";
+@import "core/media-queries";
+@import "core/js-breakpoints";
+@import "core/getcolor";
+@import "core/modernizr";
+@import "core/placeholder";
+@import "core/utilities";
+@import "core/z-index";
 
 // --------------------------------
-// Vendor
+// settings Styles
 // --------------------------------
-
-@import "vendor/all";
-
-// --------------------------------
-// Components
-// --------------------------------
-
-@import "components/all";
+@import "core/defaults";
 
 // --------------------------------
-// Modules
+// Custom App Styles
 // --------------------------------
-
-@import "modules/all";
-
-// --------------------------------
-// Application
-// --------------------------------
-
-@import "pages/all";
+@import "app/imports";

@@ -1,0 +1,138 @@
+// ================================
+// Form Elements
+// ================================
+
+// --------------------------------
+// Default Styles
+// --------------------------------
+
+input,
+textarea,
+select {
+  border-radius: 0;
+  border: .1rem solid #eee;
+  padding: .5rem 1rem;
+  margin: 0;
+  width: 100%;
+  font-size: 1.3rem;
+}
+
+// Unique styles that just apply to input/textarea/label
+input,
+textarea,
+label {
+  color: #eee;
+}
+
+// Add the correct appearance, but also adjust the height to fit with our input fields.
+// This only matters for apple devices (height)
+select {
+  background: #fff;
+  height: 3rem;
+  padding: .5rem 1rem;
+}
+
+// Reset Search Input
+input[type=search] {
+  -webkit-appearance: textfield;
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+}
+
+// Make sure we are not adding the select height to multi select
+select[multiple] {
+  height: auto;
+}
+
+// Styles relevant to checkboxes
+input[type="checkbox"] {
+  vertical-align: bottom;
+}
+
+// Styles relevant to radio buttons
+input[type="radio"] {
+  vertical-align: text-bottom;
+}
+
+// Label specific styling
+label {
+  font-weight: 400;
+}
+
+// Focus specific styling
+input:focus,
+textarea:focus {
+  border-color: #eee;
+  color: #000;
+}
+
+// Submit input specific styling
+input[type="submit"] {
+  border-radius: 0;
+  height: auto;
+}
+
+// --------------------------------
+// Placeholders
+// --------------------------------
+
+
+// for polyfill
+.placeholder {
+  color: #000;
+}
+
+// placeholder styles for regular
+input,
+textarea {
+  &::placeholder {
+    // your styles
+  }
+}
+
+// placeholder styles for focus
+input:focus,
+textarea:focus {
+  &::placeholder {
+    // your styles
+  }
+}
+
+
+// --------------------------------
+// Browser Specific
+// --------------------------------
+
+// Remove extra spacing that Firefox adds to buttons
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0
+}
+
+// Remove spinner from type="number"
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+// Reset all styling for input and textarea, handy for mobile devices
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="email"],
+input[type="password"],
+input[type="button"],
+input[type="submit"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}

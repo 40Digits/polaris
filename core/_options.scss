@@ -1,0 +1,57 @@
+// ================================
+// Variables
+// ================================
+
+$defaultConfig: (
+  // Default Font Family
+  default-font: sans-serif,
+
+  // Default Font Sizes
+  html-font-size: 62.5%,
+  body-font-size: 16px,
+  em-base: 16,
+  base-font-size: 10px,
+  rem-with-px-fallback: false,
+
+  // Default Colors
+  colors: (),
+
+  // Default Grid System
+  grid-columns: 12,
+  grid-gutters: 1.5,
+
+  // Default Gutter Sizes
+  gutter-base:   1.5rem,
+  gutter-medium: 3rem,
+  gutter-large:  4.5rem,
+
+  // Default Media Queries
+  mq: (
+    mq-tiny:     0,
+    mq-mini:     480px,
+    mq-small:    600px,
+    mq-medium:   768px,
+    mq-large:    1020px,
+    mq-xlarge:   1230px,
+    mq-xxlarge:  1320px,
+    mq-xxxlarge: 1640px
+  ),
+
+  mq-print: 'print',
+
+  // Default z-index Layers
+  z-layers: (
+    pit:      -1,
+    default:  1,
+    footer:   5,
+    header:   10,
+    nav:      20,
+    announce: 30,
+    modal:    40,
+    overlay:  50
+  )
+);
+
+// Merge application config with priority over default config
+$config: map-deep-merge($defaultConfig, $appConfig);
+$config: map-deep-merge($config, generate-mq-sizes());
