@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const sass = require('node-sass');
 const postcss = require('postcss');
@@ -96,7 +96,7 @@ glob(path.resolve(__dirname, '*.+(scss|sass)'), (err, files) => {
         .then(processedResult => {
           const destination = getDestinationPath(file);
 
-          fs.writeFile(destination, processedResult.css, writeError => {
+          fs.outputFile(destination, processedResult.css, writeError => {
             if (writeError) {
               console.log(getError(writeError));
               return;
