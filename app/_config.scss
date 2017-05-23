@@ -38,6 +38,9 @@ $appConfig: (
     white: (
       base: #fff,
     ),
-    gray: #777,
+    gray: (
+      base: #777,
+      light: #eee,
+    ),
   ),
 );
