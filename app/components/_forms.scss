@@ -9,8 +9,8 @@
 input,
 textarea,
 select {
+  border: .1rem solid getcolor(gray, light);
   border-radius: 0;
-  border: .1rem solid #eee;
   padding: .5rem 1rem;
   margin: 0;
   width: 100%;
@@ -21,13 +21,13 @@ select {
 input,
 textarea,
 label {
-  color: #eee;
+  color: getcolor(gray, light);
 }
 
 // Add the correct appearance, but also adjust the height to fit with our input fields.
 // This only matters for apple devices (height)
 select {
-  background: #fff;
+  background: getcolor(white);
   height: 3rem;
   padding: .5rem 1rem;
 }
@@ -66,8 +66,8 @@ label {
 // Focus specific styling
 input:focus,
 textarea:focus {
-  border-color: #eee;
-  color: #000;
+  border-color: getcolor(gray, light);
+  color: getcolor(black);
 }
 
 // Submit input specific styling
@@ -83,7 +83,7 @@ input[type="submit"] {
 
 // for polyfill
 .placeholder {
-  color: #000;
+  color: getcolor(black);
 }
 
 // placeholder styles for regular
@@ -109,8 +109,8 @@ textarea:focus {
 
 // Remove extra spacing that Firefox adds to buttons
 button::-moz-focus-inner {
+  border: 0;
   padding: 0;
-  border: 0
 }
 
 // Remove spinner from type="number"
