@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build",
     "build": "node _build.js",
-    "watch:sass": "chokidar \"./**/*.scss\" -c \"npm run build\""
+    "watch": "chokidar \"./**/*.scss\" -c \"npm run build\""
   },
   "author": "40Digits",
   "contributors": [
