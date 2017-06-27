@@ -4,42 +4,7 @@ $print-media: false;
 // ================================
 // Your App Settings
 // ================================
-@import "app/config";
 
-//---------------------------------
-// Setup
-//---------------------------------
-@import "core/map-set";
-@import "core/map-deep-merge";
-@import "core/map-deep-get";
-@import "core/units";
-@import "core/options-utils-auto-generate-mq";
-@import "core/options";
-
-//---------------------------------
-// Reset Stylesheet
-//---------------------------------
-@import "core/reset";
-
-// --------------------------------
-// Helpers
-// --------------------------------
-@import "core/rem";
-@import "core/grid";
-@import "core/media-queries";
-@import "core/js-breakpoints";
-@import "core/getcolor";
-@import "core/modernizr";
-@import "core/placeholder";
-@import "core/utilities";
-@import "core/z-index";
-
-// --------------------------------
-// settings Styles
-// --------------------------------
-@import "core/defaults";
-
-// --------------------------------
-// Custom App Styles
-// --------------------------------
-@import "app/imports";
+@import 'config/config';
+@import 'core/all';
+@import 'app/app';

@@ -2,7 +2,7 @@
 // Re-Usable EM & REM Functions
 // ================================
 
-@function em($px-values, $font-size: map-get($defaultConfig, 'body-font-size')) {
+@function em($px-values, $font-size: map-get($config, 'body-font-size')) {
   // Create an empty list that we can dump values into
   $em-values: ();
   @each $value in $px-values {
@@ -24,7 +24,7 @@
   @return $em-values;
 }
 
-@function rem($px-values, $font-size: map-get($defaultConfig, 'base-font-size')) {
+@function rem($px-values, $font-size: map-get($config, 'base-font-size')) {
   // Create an empty list that we can dump values into
   $rem-values: ();
   @each $value in $px-values {

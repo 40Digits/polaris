@@ -1,0 +1,24 @@
+// ===============================
+// Main App Import
+// ===============================
+
+// Sets the import order of the app styles
+
+// Support files (core funciton overrides, extends & placeholders, variables)
+// These files are intended to assist styling and are not meant to output styles.
+@import '_supports/all';
+
+// Base styles
+@import 'base/all';
+
+// Component styles
+@import 'components/all';
+
+// View styles
+@import 'views/all';
+
+// Vendor styles
+@import 'vendor/all';
+
+// Auto-generated styles
+@import '_generated/all';

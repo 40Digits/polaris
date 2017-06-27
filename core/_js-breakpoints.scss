@@ -11,6 +11,7 @@
   }
   @return $breakpoint_map;
 }
+
 $public_breakpoints: build-js-breakpoints();
 
 // --------------------------------
@@ -42,15 +43,4 @@ $public_breakpoints: build-js-breakpoints();
     $i: $i + 1;
   }
   font-family: $list;
-}
-
-// --------------------------------
-// Expose the breakpoints
-// --------------------------------
-head {
-  @include expose-breakpoint-names($public_breakpoints);
-}
-
-title {
-  @include expose-breakpoint-order($public_breakpoints);
 }

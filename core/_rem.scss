@@ -7,8 +7,7 @@
 
 // Base font size in pixels, if not already defined.
 // Should be the same as the font-size of the html element.
-// You will find the setting under /variables/_settings.scss
-// Look for $base-font-size
+// Look for $base-font-size in the config
 
 @mixin rem($property, $values, $use-px-fallback: $rem-with-px-fallback) {
   // Create a couple of empty lists as output buffers.

@@ -57,3 +57,6 @@
 
   @return $sizes;
 }
+
+// Add Generated MQ Sizes
+$config: map-deep-merge($config, generate-mq-sizes());

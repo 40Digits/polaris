@@ -1,4 +1,10 @@
-@import "fonts";
-@import "keyframes";
-@import "placeholders";
-@import "variables";
+// ===============================
+// Style Supports
+// ===============================
+
+// Support files (core funciton overrides, extends & placeholders, variables)
+// These files are intended to assist styling and are not meant to output styles.
+
+@import 'wordpress-theme';
+@import 'variables';
+@import 'placeholders';

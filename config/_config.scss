@@ -1,31 +1,46 @@
-// ================================
-// Variables
-// ================================
+//=================================
+// Custom App Config
+//=================================
 
-$defaultConfig: (
-  // Default Font Family
+//---------------------------------
+// Application Configurations
+//---------------------------------
+
+$config: (
+  // Colors
+  colors: (
+    black: (
+      base: #000,
+    ),
+    white: (
+      base: #fff,
+    ),
+    gray: (
+      base: #777,
+      light: #eee,
+    ),
+  ),
+
+  // Font Family
   default-font: sans-serif,
 
-  // Default Font Sizes
+  // Font Sizes
   html-font-size: 62.5%,
   body-font-size: 16px,
   em-base: 16,
   base-font-size: 10px,
   rem-with-px-fallback: false,
 
-  // Default Colors
-  colors: (),
-
-  // Default Grid System
+  // Grid (Flexbox) System Settings
   grid-columns: 12,
   grid-gutters: 1.5,
 
-  // Default Gutter Sizes
+  // Gutter Sizes
   gutter-base:   1.5rem,
   gutter-medium: 3rem,
   gutter-large:  4.5rem,
 
-  // Default Media Queries
+  // Media Queries
   mq: (
     mq-tiny:     0,
     mq-mini:     480px,
@@ -39,7 +54,7 @@ $defaultConfig: (
 
   mq-print: 'print',
 
-  // Default z-index Layers
+  // z-index Layers
   z-layers: (
     pit:      -1,
     default:  1,
@@ -51,7 +66,3 @@ $defaultConfig: (
     overlay:  50
   )
 );
-
-// Merge application config with priority over default config
-$config: map-deep-merge($defaultConfig, $appConfig);
-$config: map-deep-merge($config, generate-mq-sizes());

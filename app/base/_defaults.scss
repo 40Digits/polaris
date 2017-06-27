@@ -3,6 +3,31 @@
 // ================================
 
 // --------------------------------
+// Expose the breakpoints
+// --------------------------------
+
+head {
+  @include expose-breakpoint-names($public_breakpoints);
+}
+
+title {
+  @include expose-breakpoint-order($public_breakpoints);
+}
+
+// --------------------------------
+// Base Font Sizes (For Media Queries)
+// --------------------------------
+
+html {
+  font-size: map-get($config, 'html-font-size');
+}
+
+body {
+  font-size: map-get($config, 'body-font-size');
+}
+
+
+// --------------------------------
 // Pseudo
 // --------------------------------
 

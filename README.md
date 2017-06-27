@@ -42,3 +42,12 @@ If the sass starter was copied to `~/projects/my-project/_src/sass/`, then a ver
   }
 }
 ```
+
+### External Component Systems
+
+Polaris (Orbit) is intended to be imported to external component systems seamlessly. To use the core functions and configuration of Polaris externally  import the config file and all core files. Note: If app variables and placeholders are desired, they will need to be individually (`_supports/variables.scss`, `_supports/placeholders.scss`).
+
+```sass
+@import 'config/config'
+@import 'core/all'
+```

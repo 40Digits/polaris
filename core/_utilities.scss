@@ -80,20 +80,3 @@
     clear: both;
   }
 }
-
-
-// --------------------------------
-// Class Helpers
-// --------------------------------
-
-// Clear class helpers
-.cf,
-.clear,
-.clearfix {
-  @include cf;
-}
-
-// Visually hide elements while at the same time make them accessible on screen readers
-.visually-hidden {
-  @include visually-hidden;
-}
